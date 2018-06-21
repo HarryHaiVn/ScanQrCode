@@ -10,7 +10,7 @@ Introduction Features
  
  *Flash light is better
 
-![alt text](https://github.com/HarryHaiVn/ScanQrCode/tree/master/device-2018-06-22-000317.gif)
+![alt text](https://github.com/HarryHaiVn/ScanQrCode/tree/master/device-2018-06-22-000317.png)
 
 Discussions
 -----------------
