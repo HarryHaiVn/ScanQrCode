@@ -9,13 +9,8 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -39,11 +34,9 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
-import harry.vn.qrcode.view.CustomZXingScannerView;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.view.CustomZXingScannerView;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -56,7 +49,6 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     public static final String TAG = "QRScanFragment";
 
     private ZXingScannerView mScannerView;
-    private Unbinder mUnBinder;
     private static final int SELECT_PHOTO = 100;
 
     @BindView(R.id.content_frame)
@@ -69,14 +61,6 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_qrscan;
-    }
-
-    @Override
-    public void onDestroy() {
-        if (mUnBinder != null) {
-            mUnBinder.unbind();
-        }
-        super.onDestroy();
     }
 
     @Override
@@ -294,10 +278,9 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            String qrCode = result;
             rlProgressBar.setVisibility(View.GONE);
-            if (qrCode != null) {
-                showDialog(qrCode + "", getString(R.string.ok));
+            if (result != null) {
+                showDialog(result + "", getString(R.string.ok));
             } else {
                 showDialog(getString(R.string.nothing_try), getString(R.string.error));
             }
