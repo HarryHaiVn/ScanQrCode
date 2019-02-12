@@ -3,21 +3,26 @@ package harry.vn.qrcode.activity;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MenuItem;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import harry.vn.qrcode.utils.PermissionUtils;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.fragment.HistoryFragment;
+import harry.vn.qrcode.fragment.PhotoFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
+import harry.vn.qrcode.fragment.SettingFragment;
+import harry.vn.qrcode.utils.PermissionUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         disableShiftMode(bottomNavigationView);
         onPermission();
-        showHomeView();
+        loadFragment(new PhotoFragment());
+        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @SuppressLint("RestrictedApi")
@@ -63,10 +69,39 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showHomeView() {
-        Fragment qrScanFragment = new QRScanFragment();
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            Fragment fragment;
+            switch (item.getItemId()) {
+                case R.id.menu_photo:
+                    fragment = new PhotoFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.menu_scanner:
+                    fragment = new QRScanFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.menu_setting:
+                    fragment = new SettingFragment();
+                    loadFragment(fragment);
+                    return true;
+                case R.id.menu_history:
+                    fragment = new HistoryFragment();
+                    loadFragment(fragment);
+                    return true;
+            }
+
+            return false;
+        }
+    };
+
+    private void loadFragment(Fragment fragment) {
+        // load fragment
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.container, qrScanFragment).commit();
+                .replace(R.id.container, fragment).commit();
     }
 
     private void onPermission() {

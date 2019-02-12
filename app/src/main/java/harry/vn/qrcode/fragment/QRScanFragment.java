@@ -49,7 +49,7 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.app.Activity.RESULT_OK;
 
-public class QRScanFragment extends Fragment implements ZXingScannerView.ResultHandler {
+public class QRScanFragment extends BaseFragment implements ZXingScannerView.ResultHandler {
 
     private static final String HTTPS = "https://";
     private static final String HTTP = "http://";
@@ -66,13 +66,9 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
     @BindView(R.id.rlProgressBar)
     RelativeLayout rlProgressBar;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View mView = inflater.inflate(R.layout.fragment_qrscan, container, false);
-        mUnBinder = ButterKnife.bind(this, mView);
-        initChildView();
-        return mView;
+    protected int getLayoutRes() {
+        return R.layout.fragment_qrscan;
     }
 
     @Override
@@ -83,6 +79,7 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
         super.onDestroy();
     }
 
+    @Override
     protected void initChildView() {
         mScannerView = new ZXingScannerView(getActivity()) {
             @Override
