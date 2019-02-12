@@ -7,4 +7,8 @@
     <string name="error">Error</string>
     <string name="not_found">File not found</string>
     <string name="scan_qr">Scan Qr</string>
+    <string name="photo">Photo</string>
+    <string name="scanner">Scanner</string>
+    <string name="setting">Setting</string>
+    <string name="history">History</string>
 </resources>

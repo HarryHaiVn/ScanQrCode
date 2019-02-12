@@ -10,6 +10,7 @@ import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.SpannableString;
@@ -65,11 +66,9 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
     @BindView(R.id.rlProgressBar)
     RelativeLayout rlProgressBar;
 
-    private String qrCode;
-
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_qrscan, container, false);
         mUnBinder = ButterKnife.bind(this, mView);
         initChildView();
@@ -298,7 +297,7 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            qrCode = result;
+            String qrCode = result;
             rlProgressBar.setVisibility(View.GONE);
             if (qrCode != null) {
                 showDialog(qrCode + "", getString(R.string.ok));
