@@ -41,7 +41,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import harry.vn.qrcode.CustomZXingScannerView;
+import harry.vn.qrcode.view.CustomZXingScannerView;
 import harry.vn.qrcode.R;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -57,13 +57,15 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
     private ZXingScannerView mScannerView;
     private Unbinder mUnBinder;
     private static final int SELECT_PHOTO = 100;
+
     @BindView(R.id.content_frame)
     ViewGroup contentFrame;
     @BindView(R.id.gallery)
     ImageView click;
     @BindView(R.id.rlProgressBar)
     RelativeLayout rlProgressBar;
-    private String qrcode;
+
+    private String qrCode;
 
     @Nullable
     @Override
@@ -123,21 +125,22 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
                 if (resultCode == RESULT_OK) {
                     Uri selectedImage = data.getData();
                     InputStream imageStream = null;
+                    if (getContext() == null || selectedImage == null) return;
                     try {
                         //getting the image
                         imageStream = getContext().getContentResolver().openInputStream(selectedImage);
                     } catch (FileNotFoundException e) {
-                        Toast.makeText(getContext(), "File not found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), R.string.not_found, Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
                     //decoding bitmap
                     Bitmap bMap = BitmapFactory.decodeStream(imageStream);
                     rlProgressBar.setVisibility(View.VISIBLE);
-                    Toast.makeText(getContext(), "Scan Qr", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), R.string.scan_qr, Toast.LENGTH_SHORT).show();
                     new MyAsyncTask(bMap).execute();
-//                    qrcode = readQRImage(bMap);
-//                    if (qrcode != null) {
-//                        showDialog(qrcode + "", "OK");
+//                    qrCode = readQRImage(bMap);
+//                    if (qrCode != null) {
+//                        showDialog(qrCode + "", getString(R.string.ok));
 //                    } else {
 //                        showDialog("Nothing found try a different image or try again", "Error");
 //
@@ -173,17 +176,12 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
         int height = bm.getHeight();
         float scaleWidth = ((float) newWidth) / width;
         float scaleHeight = ((float) newHeight) / height;
-
         // create a matrix for the manipulation
         Matrix matrix = new Matrix();
-
         // resize the bit map
         matrix.postScale(scaleWidth, scaleHeight);
-
         // recreate the new Bitmap
-        Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
-
-        return resizedBitmap;
+        return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
     }
 
     @Override
@@ -194,11 +192,11 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
 
     @Override
     public void handleResult(Result rawResult) {
-        showDialog(rawResult.getText() + "", "OK");
+        showDialog(rawResult.getText() + "", getString(R.string.ok));
     }
 
     public void showDialog(final String msg, final String status) {
-
+        if (getActivity() == null) return;
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
@@ -211,7 +209,7 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
 
         TextView txtContent = dialog.findViewById(R.id.txtContent);
         txtContent.setText(msg);
-        if (status.equals("OK")) {
+        if (status.equals(getString(R.string.ok))) {
             SpannableString content = new SpannableString(msg);
             content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
             txtContent.setText(content);
@@ -226,14 +224,14 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
                     i.setData(Uri.parse("https://www.google.com.vn/search?q=" + msg));
                     startActivity(i);
                 } else {
-                    if (status.equals("OK")) {
+                    if (status.equals(getString(R.string.ok))) {
                         openBrowser(msg);
                     }
                 }
             }
         });
 
-        TextView cancel = dialog.findViewById(R.id.Cancel);
+        TextView cancel = dialog.findViewById(R.id.txtCancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,11 +239,11 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
                 mScannerView.resumeCameraPreview(QRScanFragment.this);
             }
         });
-        TextView timkiem = dialog.findViewById(R.id.timkiem);
+        TextView txtSearch = dialog.findViewById(R.id.txtSearch);
         if (!isValidateURl(msg)) {
-            timkiem.setText("Open Url");
+            txtSearch.setText(R.string.open_url);
         }
-        timkiem.setOnClickListener(new View.OnClickListener() {
+        txtSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
@@ -254,7 +252,7 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
                     i.setData(Uri.parse("https://www.google.com.vn/search?q=" + msg));
                     startActivity(i);
                 } else {
-                    if (status.equals("OK")) {
+                    if (status.equals(getString(R.string.ok))) {
                         openBrowser(msg);
                     }
                 }
@@ -264,15 +262,16 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
     }
 
     public boolean isValidateURl(String msg) {
-        return !msg.startsWith("http://") && !msg.startsWith("https://");
+        return !msg.startsWith(HTTP) && !msg.startsWith(HTTPS);
     }
 
     public void openBrowser(String url) {
+        if (getActivity() == null) return;
         if (!url.startsWith(HTTP) && !url.startsWith(HTTPS)) {
             url = HTTP + url;
         }
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        getActivity().startActivity(Intent.createChooser(intent, "Choose browser"));// Choose browser is arbitrary :)
+        getActivity().startActivity(Intent.createChooser(intent, getString(R.string.choose_brower)));// Choose browser is arbitrary :)
     }
 
     @OnClick(R.id.ivFlash)
@@ -299,12 +298,12 @@ public class QRScanFragment extends Fragment implements ZXingScannerView.ResultH
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            qrcode = result;
+            qrCode = result;
             rlProgressBar.setVisibility(View.GONE);
-            if (qrcode != null) {
-                showDialog(qrcode + "", "OK");
+            if (qrCode != null) {
+                showDialog(qrCode + "", getString(R.string.ok));
             } else {
-                showDialog("Nothing found try a different image or try again", "Error");
+                showDialog(getString(R.string.nothing_try), getString(R.string.error));
             }
         }
     }

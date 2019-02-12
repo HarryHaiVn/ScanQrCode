@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">QrCode</string>
+    <string name="ok">OK</string>
+    <string name="open_url">Open Url</string>
+    <string name="choose_brower">Choose browser</string>
+    <string name="nothing_try">Nothing found try a different image or try again</string>
+    <string name="error">Error</string>
+    <string name="not_found">File not found</string>
+    <string name="scan_qr">Scan Qr</string>
 </resources>

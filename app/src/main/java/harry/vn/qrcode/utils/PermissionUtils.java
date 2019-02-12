@@ -1,4 +1,4 @@
-package harry.vn.qrcode;
+package harry.vn.qrcode.utils;
 
 
 import android.app.Activity;
@@ -14,11 +14,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-
-/**
- * Created by Jaison on 02/05/17.
- */
 
 public class PermissionUtils {
 

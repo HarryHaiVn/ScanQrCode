@@ -1,4 +1,4 @@
-package harry.vn.qrcode;
+package harry.vn.qrcode.view;
 
 import android.content.Context;
 import android.content.res.Configuration;

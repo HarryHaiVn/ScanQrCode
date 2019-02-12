@@ -1,4 +1,4 @@
-package harry.vn.qrcode;
+package harry.vn.qrcode.activity;
 
 import android.Manifest;
 import android.os.Bundle;
@@ -9,6 +9,8 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import butterknife.ButterKnife;
+import harry.vn.qrcode.utils.PermissionUtils;
+import harry.vn.qrcode.R;
 import harry.vn.qrcode.fragment.QRScanFragment;
 
 public class MainActivity extends AppCompatActivity {
