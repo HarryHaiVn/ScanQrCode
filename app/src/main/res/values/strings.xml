@@ -11,4 +11,13 @@
     <string name="scanner">Scanner</string>
     <string name="setting">Setting</string>
     <string name="history">History</string>
+    <string name="choose_a_image_having_qr_code_to_scan">Choose a image having QR code to Scan</string>
+    <string name="automatically_open_the_link">Automatically open the link</string>
+    <string name="feedback">Feedback</string>
+    <string name="rate_us">Rate us</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="sound">Sound</string>
+    <string name="autofocus">AutoFocus</string>
+    <string name="scanned_result">Scanned Result</string>
+    <string name="product">Product</string>
 </resources>

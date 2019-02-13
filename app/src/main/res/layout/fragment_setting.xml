@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        style="@style/style_title"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="@string/setting"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivLink"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_link"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
+
+    <TextView
+        android:id="@+id/txtLink"
+        style="@style/style_text_setting"
+        android:text="@string/automatically_open_the_link"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLink"
+        app:layout_constraintStart_toEndOf="@id/ivLink"
+        app:layout_constraintTop_toTopOf="@+id/ivLink" />
+
+    <Switch
+        style="@style/style_switch_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLink" />
+
+    <ImageView
+        android:id="@+id/ivAutoFocus"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_autofocus"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivLink" />
+
+    <TextView
+        android:id="@+id/txtAutoFocus"
+        style="@style/style_text_setting"
+        android:text="@string/autofocus"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAutoFocus"
+        app:layout_constraintStart_toEndOf="@id/ivAutoFocus"
+        app:layout_constraintTop_toTopOf="@+id/ivAutoFocus" />
+
+    <Switch
+        style="@style/style_switch_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAutoFocus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivAutoFocus" />
+
+    <ImageView
+        android:id="@+id/ivSound"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_sound"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivAutoFocus" />
+
+    <TextView
+        android:id="@+id/txtSound"
+        style="@style/style_text_setting"
+        android:text="@string/sound"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSound"
+        app:layout_constraintStart_toEndOf="@id/ivSound"
+        app:layout_constraintTop_toTopOf="@+id/ivSound" />
+
+    <Switch
+        style="@style/style_switch_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSound"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivSound" />
+
+    <ImageView
+        android:id="@+id/ivVibrate"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_vibrate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSound" />
+
+    <TextView
+        android:id="@+id/txtVibrate"
+        style="@style/style_text_setting"
+        android:text="@string/vibrate"
+        app:layout_constraintBottom_toBottomOf="@+id/ivVibrate"
+        app:layout_constraintStart_toEndOf="@id/ivVibrate"
+        app:layout_constraintTop_toTopOf="@+id/ivVibrate" />
+
+    <Switch
+        style="@style/style_switch_setting"
+        app:layout_constraintBottom_toBottomOf="@+id/ivVibrate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivVibrate" />
+
+    <ImageView
+        android:id="@+id/ivFeedback"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_feedback"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivVibrate" />
+
+    <TextView
+        android:id="@+id/txtFeedback"
+        style="@style/style_text_setting"
+        android:text="@string/feedback"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFeedback"
+        app:layout_constraintStart_toEndOf="@id/ivFeedback"
+        app:layout_constraintTop_toTopOf="@+id/ivFeedback" />
+
+    <ImageView
+        android:id="@+id/ivRateUs"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_rate"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivFeedback" />
+
+    <TextView
+        android:id="@+id/txtRateus"
+        style="@style/style_text_setting"
+        android:text="@string/rate_us"
+        app:layout_constraintBottom_toBottomOf="@+id/ivRateUs"
+        app:layout_constraintStart_toEndOf="@id/ivRateUs"
+        app:layout_constraintTop_toTopOf="@+id/ivRateUs" />
+
+    <ImageView
+        android:id="@+id/ivAbout"
+        style="@style/style_icon_setting"
+        android:src="@drawable/ic_icon_about"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivRateUs" />
+
+    <TextView
+        android:id="@+id/txtAbout"
+        style="@style/style_text_setting"
+        android:text="@string/feedback"
+        app:layout_constraintBottom_toBottomOf="@+id/ivAbout"
+        app:layout_constraintStart_toEndOf="@id/ivAbout"
+        app:layout_constraintTop_toTopOf="@+id/ivAbout" />
+
+</android.support.constraint.ConstraintLayout>

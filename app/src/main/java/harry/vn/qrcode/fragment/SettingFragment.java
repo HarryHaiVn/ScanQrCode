@@ -6,7 +6,7 @@ public class SettingFragment extends BaseFragment {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.fragment_photo;
+        return R.layout.fragment_setting;
     }
 
     @Override

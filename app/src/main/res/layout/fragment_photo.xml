@@ -4,7 +4,26 @@
     android:layout_height="match_parent">
 
     <TextView
+        style="@style/style_title"
+        android:text="@string/photo" />
+
+    <ImageView
+        android:id="@+id/ivChooseImage"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/_120sdp"
+        android:src="@drawable/ic_icon_choose_img"
+        android:tint="@color/colorOrange" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="adcc" />
+        android:layout_below="@+id/ivChooseImage"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:gravity="center"
+        android:text="@string/choose_a_image_having_qr_code_to_scan"
+        android:textColor="@color/colorTextApp"
+        android:textSize="@dimen/_16sdp" />
 </RelativeLayout>
