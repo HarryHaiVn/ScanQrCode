@@ -20,4 +20,6 @@
     <string name="autofocus">AutoFocus</string>
     <string name="scanned_result">Scanned Result</string>
     <string name="product">Product</string>
+    <string name="qr_code">QR Code</string>
+    <string name="content_qr">Position the device above the QR Code/Barcode and wait for automatic scanning</string>
 </resources>

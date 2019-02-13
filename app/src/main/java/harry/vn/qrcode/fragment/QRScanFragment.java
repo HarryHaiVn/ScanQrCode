@@ -11,10 +11,10 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,10 +32,14 @@ import com.google.zxing.common.HybridBinarizer;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import harry.vn.qrcode.HistoryApp;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.db.HistoryRepository;
+import harry.vn.qrcode.model.HistoryModel;
 import harry.vn.qrcode.view.CustomZXingScannerView;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -53,8 +57,6 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
 
     @BindView(R.id.content_frame)
     ViewGroup contentFrame;
-    @BindView(R.id.gallery)
-    ImageView click;
     @BindView(R.id.rlProgressBar)
     RelativeLayout rlProgressBar;
 
@@ -83,7 +85,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
         contentFrame.addView(mScannerView);
     }
 
-    @OnClick(R.id.gallery)
+    @OnClick(R.id.ivQRCode)
     public void OnClick() {
         Intent photoPic = new Intent(Intent.ACTION_PICK);
         photoPic.setType("image/*");
@@ -173,6 +175,19 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     @Override
     public void handleResult(Result rawResult) {
         showDialog(rawResult.getText() + "", getString(R.string.ok));
+        if (getActivity() == null) return;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
+                historyRepository.insertHistory(new HistoryModel(rawResult.getText()));
+                List<HistoryModel> list = historyRepository.getAll();
+                Log.i("Hainm-------------", list.size() + "");
+                for (int i = 0; i < list.size(); i++) {
+                    Log.i("Hainm-------------", list.get(i).getLink() + "");
+                }
+            }
+        }).start();
     }
 
     public void showDialog(final String msg, final String status) {
