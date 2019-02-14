@@ -23,6 +23,7 @@ import harry.vn.qrcode.fragment.PhotoFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
 import harry.vn.qrcode.fragment.SettingFragment;
 import harry.vn.qrcode.utils.PermissionUtils;
+import harry.vn.qrcode.utils.PreferencesUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PreferencesUtils.init(this);
+//        PreferencesUtils.putBoolean(KEY_ASSISTANT, b);
         ButterKnife.bind(this);
         disableShiftMode(bottomNavigationView);
         onPermission();

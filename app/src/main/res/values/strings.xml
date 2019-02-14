@@ -20,4 +20,7 @@
     <string name="autofocus">AutoFocus</string>
     <string name="scanned_result">Scanned Result</string>
     <string name="product">Product</string>
+    <string name="share">Share</string>
+    <string name="copy">Copy</string>
+    <string name="share_on">Share On</string>
 </resources>

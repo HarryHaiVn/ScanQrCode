@@ -79,94 +79,82 @@
         app:layout_constraintTop_toBottomOf="@+id/txtLink" />
 
     <LinearLayout
-        android:id="@+id/llSearch"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/llShare"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/_10sdp"
+        android:weightSum="3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
 
-        <ImageView
-            android:id="@+id/ivSearch"
-            style="@style/style_image_history"
-            android:src="@drawable/ic_icon_search" />
-
-        <TextView
-            android:id="@+id/txtSearch"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llShare"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Product search"
-            android:textSize="@dimen/_14sdp" />
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivShare"
+                style="@style/style_image_history"
+                android:src="@drawable/ic_icon_share" />
+
+            <TextView
+                android:id="@+id/txtShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/share"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCopy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivCopy"
+                style="@style/style_image_history"
+                android:src="@drawable/ic_icon_copy" />
+
+            <TextView
+                android:id="@+id/txtCopy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/copy"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llShareon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivShareOn"
+                style="@style/style_image_history"
+                android:src="@drawable/ic_icon_share_on" />
+
+            <TextView
+                android:id="@+id/txtShareOn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:gravity="center"
+                android:text="@string/share_on"
+                android:textSize="@dimen/_14sdp" />
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/llShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/llCopy"
-        app:layout_constraintStart_toEndOf="@+id/llSearch"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-        <ImageView
-            android:id="@+id/ivShare"
-            style="@style/style_image_history"
-            android:src="@drawable/ic_icon_share" />
-
-        <TextView
-            android:id="@+id/txtShare"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Share"
-            android:textSize="@dimen/_14sdp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llCopy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/llShareon"
-        app:layout_constraintStart_toEndOf="@+id/llShare"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-        <ImageView
-            android:id="@+id/ivCopy"
-            style="@style/style_image_history"
-            android:src="@drawable/ic_icon_copy" />
-
-        <TextView
-            android:id="@+id/txtCopy"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Share"
-            android:textSize="@dimen/_14sdp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llShareon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/llCopy"
-        app:layout_constraintTop_toBottomOf="@+id/view">
-
-        <ImageView
-            android:id="@+id/ivShareOn"
-            style="@style/style_image_history"
-            android:src="@drawable/ic_icon_share_on" />
-
-        <TextView
-            android:id="@+id/txtShareOn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:text="Share"
-            android:textSize="@dimen/_14sdp" />
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

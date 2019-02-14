@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -28,6 +29,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivLink" />
 
     <Switch
+        android:id="@+id/switchAutoOpenLink"
         style="@style/style_switch_setting"
         app:layout_constraintBottom_toBottomOf="@+id/ivLink"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,6 +51,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivAutoFocus" />
 
     <Switch
+        android:id="@+id/switchAutoFocus"
         style="@style/style_switch_setting"
         app:layout_constraintBottom_toBottomOf="@+id/ivAutoFocus"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,6 +73,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivSound" />
 
     <Switch
+        android:id="@+id/switchSound"
         style="@style/style_switch_setting"
         app:layout_constraintBottom_toBottomOf="@+id/ivSound"
         app:layout_constraintEnd_toEndOf="parent"
@@ -91,6 +95,7 @@
         app:layout_constraintTop_toTopOf="@+id/ivVibrate" />
 
     <Switch
+        android:id="@+id/switchVibrate"
         style="@style/style_switch_setting"
         app:layout_constraintBottom_toBottomOf="@+id/ivVibrate"
         app:layout_constraintEnd_toEndOf="parent"
