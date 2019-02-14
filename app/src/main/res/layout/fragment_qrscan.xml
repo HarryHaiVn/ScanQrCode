@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorButtonGrey">
+    android:layout_height="match_parent">
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -13,37 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/gallery"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="33dp"
-            android:src="@drawable/ic_gallery" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:alpha="0.3"
+            android:background="@color/colorBlack">
 
-        <ImageView
-            android:id="@+id/ivFlash"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_flash" />
+            <TextView
+                style="@style/style_title"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="@string/qr_code"
+                android:textColor="@color/colorWhite"
+                android:textSize="16sp" />
 
+            <ImageView
+                android:id="@+id/ivQRCode"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_toStartOf="@+id/ivFlash"
+                android:layout_toLeftOf="@+id/ivFlash"
+                android:src="@drawable/ic_icon_qr_autofocus"
+                android:tint="@color/colorWhite" />
+
+            <ImageView
+                android:id="@+id/ivFlash"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:src="@drawable/ic_icon_flash"
+                android:tint="@color/colorWhite" />
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/tvContent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_centerHorizontal="true"
-            android:text="Align the QR Code to the middle of the frame"
+            android:gravity="center"
+            android:text="@string/content_qr"
             android:textColor="@color/colorWhite"
             android:textSize="16sp"
             android:textStyle="bold" />
