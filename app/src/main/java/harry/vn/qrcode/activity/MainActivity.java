@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.fragment.HistoryContainerFragment;
 import harry.vn.qrcode.fragment.HistoryFragment;
 import harry.vn.qrcode.fragment.PhotoFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                         loadFragment(fragment);
                         return true;
                     case R.id.menu_history:
-                        fragment = new HistoryFragment();
+                        fragment = new HistoryContainerFragment();
                         loadFragment(fragment);
                         return true;
                 }

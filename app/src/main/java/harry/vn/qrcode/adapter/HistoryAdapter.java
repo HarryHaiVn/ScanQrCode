@@ -16,12 +16,13 @@ import java.util.List;
 import java.util.Objects;
 
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.listener.OnClickItemHistory;
 import harry.vn.qrcode.model.HistoryModel;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
     private List<HistoryModel> data;
     private LayoutInflater mLayoutInflater;
-
+    private OnClickItemHistory onClickItemHistory;
     public HistoryAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
     }
@@ -35,7 +36,8 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        HistoryModel movie = data.get(position);
+        holder.setData(data.get(position));
+        holder.setOnClickItemHistory(onClickItemHistory);
     }
 
     @Override
@@ -86,5 +88,9 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
             data = listData;
             diffResult.dispatchUpdatesTo(this);
         }
+    }
+
+    public void setListener(OnClickItemHistory onClickListener) {
+        this.onClickItemHistory=onClickListener;
     }
 }
