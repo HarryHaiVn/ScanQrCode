@@ -13,4 +13,9 @@ public class PhotoFragment extends BaseFragment {
     protected void initChildView() {
 
     }
+
+    @Override
+    protected void initData() {
+
+    }
 }

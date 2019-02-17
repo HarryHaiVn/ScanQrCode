@@ -85,6 +85,11 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
         contentFrame.addView(mScannerView);
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
     @OnClick(R.id.ivQRCode)
     public void OnClick() {
         Intent photoPic = new Intent(Intent.ACTION_PICK);
@@ -176,16 +181,13 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     public void handleResult(Result rawResult) {
         showDialog(rawResult.getText() + "", getString(R.string.ok));
         if (getActivity() == null) return;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
-                historyRepository.insertHistory(new HistoryModel(rawResult.getText()));
-                List<HistoryModel> list = historyRepository.getAll();
-                Log.i("Hainm-------------", list.size() + "");
-                for (int i = 0; i < list.size(); i++) {
-                    Log.i("Hainm-------------", list.get(i).getLink() + "");
-                }
+        new Thread(() -> {
+            HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
+            historyRepository.insertHistory(new HistoryModel(rawResult.getText()));
+            List<HistoryModel> list = historyRepository.getAll();
+            Log.i("Hainm-------------", list.size() + "");
+            for (int i = 0; i < list.size(); i++) {
+                Log.i("Hainm-------------", list.get(i).getLink() + "");
             }
         }).start();
     }

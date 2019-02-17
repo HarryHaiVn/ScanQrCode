@@ -21,12 +21,15 @@ public abstract class BaseFragment extends Fragment {
         View mView = inflater.inflate(getLayoutRes(), container, false);
         mUnBinder = ButterKnife.bind(this, mView);
         initChildView();
+        initData();
         return mView;
     }
 
     protected abstract int getLayoutRes();
 
     protected abstract void initChildView();
+
+    protected abstract void initData();
 
     @Override
     public void onDestroy() {

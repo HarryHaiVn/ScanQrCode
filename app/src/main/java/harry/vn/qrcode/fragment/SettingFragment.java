@@ -9,11 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.provider.Settings;
-import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
 import java.util.Objects;
 
@@ -73,6 +69,11 @@ public class SettingFragment extends BaseFragment {
 
     }
 
+    @Override
+    protected void initData() {
+
+    }
+
     private void onSettingVibrate() {
         if (getActivity() == null) return;
         if (Build.VERSION.SDK_INT >= 26) {
@@ -97,6 +98,25 @@ public class SettingFragment extends BaseFragment {
     @SuppressLint("IntentReset")
     @OnClick(R.id.txtRateus)
     public void OnClickRate() {
+        if (getActivity() == null) return;
+        Uri uri = Uri.parse("market://details?id=" + getActivity().getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + getActivity().getPackageName())));
+        }
+    }
+
+    @SuppressLint("IntentReset")
+    @OnClick(R.id.txtAbout)
+    public void OnClickAbout() {
         if (getActivity() == null) return;
         Uri uri = Uri.parse("market://details?id=" + getActivity().getPackageName());
         Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);

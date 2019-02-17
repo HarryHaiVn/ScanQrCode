@@ -73,33 +73,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            = item -> {
+                Fragment fragment;
+                switch (item.getItemId()) {
+                    case R.id.menu_photo:
+                        fragment = new PhotoFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.menu_scanner:
+                        fragment = new QRScanFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.menu_setting:
+                        fragment = new SettingFragment();
+                        loadFragment(fragment);
+                        return true;
+                    case R.id.menu_history:
+                        fragment = new HistoryFragment();
+                        loadFragment(fragment);
+                        return true;
+                }
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            Fragment fragment;
-            switch (item.getItemId()) {
-                case R.id.menu_photo:
-                    fragment = new PhotoFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.menu_scanner:
-                    fragment = new QRScanFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.menu_setting:
-                    fragment = new SettingFragment();
-                    loadFragment(fragment);
-                    return true;
-                case R.id.menu_history:
-                    fragment = new HistoryFragment();
-                    loadFragment(fragment);
-                    return true;
-            }
-
-            return false;
-        }
-    };
+                return false;
+            };
 
     private void loadFragment(Fragment fragment) {
         // load fragment

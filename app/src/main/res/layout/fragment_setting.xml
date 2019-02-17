@@ -141,7 +141,7 @@
     <TextView
         android:id="@+id/txtAbout"
         style="@style/style_text_setting"
-        android:text="@string/feedback"
+        android:text="@string/about"
         app:layout_constraintBottom_toBottomOf="@+id/ivAbout"
         app:layout_constraintStart_toEndOf="@id/ivAbout"
         app:layout_constraintTop_toTopOf="@+id/ivAbout" />
