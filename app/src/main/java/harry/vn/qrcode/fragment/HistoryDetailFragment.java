@@ -3,6 +3,7 @@ package harry.vn.qrcode.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
 import android.widget.TextView;
@@ -12,10 +13,18 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import harry.vn.qrcode.R;
 
+import static harry.vn.qrcode.fragment.HistoryFragment.KEY_DATA;
+
 public class HistoryDetailFragment extends BaseFragment {
     @BindView(R.id.txtLink)
     TextView txtLink;
+    String txtQr;
 
+    public static HistoryDetailFragment newInstance(Bundle bundle) {
+        HistoryDetailFragment fragment = new HistoryDetailFragment();
+        fragment.setArguments(bundle);
+        return fragment;
+    }
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_history_detail;
@@ -23,7 +32,11 @@ public class HistoryDetailFragment extends BaseFragment {
 
     @Override
     protected void initChildView() {
-
+        if (getArguments() != null) {
+            txtQr = getArguments().getString(
+                    KEY_DATA);
+            txtLink.setText(txtQr);
+        }
     }
 
     @Override
@@ -102,12 +115,12 @@ public class HistoryDetailFragment extends BaseFragment {
             }
             Toast toast = Toast.makeText(getActivity(),
                     "Your Code is copied", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 50, 50);
+            toast.setGravity(Gravity.BOTTOM, 25, 50);
             toast.show();
         } catch (Exception e) {
             Toast toast = Toast.makeText(getActivity(),
                     "Your Code can't copy", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 50, 50);
+            toast.setGravity(Gravity.BOTTOM, 25, 50);
             toast.show();
         }
     }

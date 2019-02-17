@@ -45,7 +45,6 @@
         android:layout_height="@dimen/_24sdp"
         android:src="@drawable/ic_icon_delete"
         android:tint="#f48744"
-        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
