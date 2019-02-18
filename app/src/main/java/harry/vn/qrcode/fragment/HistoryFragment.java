@@ -1,26 +1,37 @@
 package harry.vn.qrcode.fragment;
 
+import android.app.AlertDialog;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import harry.vn.qrcode.HistoryApp;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.adapter.HistoryAdapter;
+import harry.vn.qrcode.db.HistoryRepository;
 import harry.vn.qrcode.listener.OnClickItemHistory;
 import harry.vn.qrcode.model.HistoryModel;
+import harry.vn.qrcode.utils.FragmentUtil;
 
 public class HistoryFragment extends BaseFragment implements OnClickItemHistory {
     public static final String KEY_DATA = "DATA";
-    ArrayList<HistoryModel> listData = new ArrayList<>();
+    private List<HistoryModel> listData;
     @BindView(R.id.rvHistory)
     RecyclerView rvHistory;
+
+    public static HistoryFragment newInstance() {
+        Bundle args = new Bundle();
+        HistoryFragment fragment = new HistoryFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     @Override
     protected int getLayoutRes() {
         return R.layout.fragment_history;
@@ -39,14 +50,12 @@ public class HistoryFragment extends BaseFragment implements OnClickItemHistory 
 
     @Override
     protected void initData() {
+        if (listData != null) return;
+        listData = new ArrayList<>();
         new Thread(() -> {
             if (getActivity() == null) return;
-//            HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
-//            listData.addAll(historyRepository.getAll());
-            Log.i("List Size History :", listData.size() + "");
-            for (int i = 0; i < 6; i++) {
-                listData.add(new HistoryModel("https://medium.com/@ajaysaini.official/building-database-with-room-persistence-library-ecf7d0b8f3e9"));
-            }
+            HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
+            listData.addAll(historyRepository.getAll());
             getActivity().runOnUiThread(() -> mAdapter.setData(listData));
         }).start();
     }
@@ -54,11 +63,32 @@ public class HistoryFragment extends BaseFragment implements OnClickItemHistory 
     @Override
     public void onClickItem(HistoryModel item) {
         if (getActivity() == null) return;
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
         Bundle bundle=new Bundle();
         bundle.putString(KEY_DATA,item.getLink());
-        ft.replace(R.id.container, HistoryDetailFragment.newInstance(bundle));
-        ft.addToBackStack(HistoryDetailFragment.class.getName());
-        ft.commit();
+        FragmentUtil.showFragment(getActivity().getSupportFragmentManager(), HistoryDetailFragment.newInstance(bundle), true, null, HistoryDetailFragment.class.getName(), false);
+    }
+
+    @Override
+    public void onRemoveItem(HistoryModel item) {
+        AlertDialog.Builder builder;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            builder = new AlertDialog.Builder(getActivity(), android.R.style.Theme_Material_Dialog_Alert);
+        } else {
+            builder = new AlertDialog.Builder(getActivity());
+        }
+        builder.setMessage(R.string.content_dialog)
+                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
+                    new Thread(() -> {
+                        if (getActivity() == null) return;
+                        HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
+                        historyRepository.onRemoveItem(item);
+                        List<HistoryModel> list = new ArrayList<>(historyRepository.getAll());
+                        getActivity().runOnUiThread(() -> mAdapter.setData(list));
+                    }).start();
+                })
+                .setNegativeButton(android.R.string.no, (dialog, which) -> {
+                    dialog.dismiss();
+                })
+                .show();
     }
 }

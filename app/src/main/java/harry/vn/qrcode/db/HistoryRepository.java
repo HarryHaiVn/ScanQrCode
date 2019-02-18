@@ -35,4 +35,8 @@ public class HistoryRepository {
         return mHistoryDao.getAll();
     }
 
+    public void onRemoveItem(HistoryModel item) {
+        mHistoryDao.delete(item);
+    }
+
 }

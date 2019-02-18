@@ -4,4 +4,6 @@ import harry.vn.qrcode.model.HistoryModel;
 
 public interface OnClickItemHistory {
     void onClickItem(HistoryModel item);
+
+    void onRemoveItem(HistoryModel item);
 }

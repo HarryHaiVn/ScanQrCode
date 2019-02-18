@@ -1,8 +1,7 @@
 package harry.vn.qrcode.fragment;
 
-import android.support.v4.app.FragmentTransaction;
-
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.utils.FragmentUtil;
 
 public class HistoryContainerFragment extends BaseFragment {
 
@@ -13,12 +12,8 @@ public class HistoryContainerFragment extends BaseFragment {
 
     @Override
     protected void initChildView() {
-       // Begin the transaction
         if (getActivity() == null) return;
-        FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-        ft.add(R.id.container, new HistoryFragment());
-        ft.addToBackStack(HistoryFragment.class.getName());
-        ft.commit();
+        FragmentUtil.addFragment(getActivity().getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
     }
 
     @Override

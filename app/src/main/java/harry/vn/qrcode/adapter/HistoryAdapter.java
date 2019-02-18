@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -45,7 +44,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
         return data == null ? 0 : data.size();
     }
 
-    public void setData(ArrayList<HistoryModel> listData) {
+    public void setData(List<HistoryModel> listData) {
         if (data == null) {
             data = listData;
             notifyItemRangeInserted(0, listData.size());

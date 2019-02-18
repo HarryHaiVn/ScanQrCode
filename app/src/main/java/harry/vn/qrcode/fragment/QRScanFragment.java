@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
@@ -33,6 +36,7 @@ import com.google.zxing.common.HybridBinarizer;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,11 +44,15 @@ import harry.vn.qrcode.HistoryApp;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.db.HistoryRepository;
 import harry.vn.qrcode.model.HistoryModel;
+import harry.vn.qrcode.utils.PreferencesUtils;
 import harry.vn.qrcode.view.CustomZXingScannerView;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.VIBRATOR_SERVICE;
+import static harry.vn.qrcode.utils.PreferencesUtils.KEY_OPEN_LINK;
+import static harry.vn.qrcode.utils.PreferencesUtils.KEY_VIBRATE;
 
 public class QRScanFragment extends BaseFragment implements ZXingScannerView.ResultHandler {
 
@@ -71,7 +79,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
             @Override
             protected IViewFinder createViewFinderView(Context context) {
                 CustomZXingScannerView customZXingScannerView = new CustomZXingScannerView(context);
-                customZXingScannerView.setBorderColor(Color.WHITE);
+                customZXingScannerView.setBorderColor(ContextCompat.getColor(context, R.color.colorOrange));
                 customZXingScannerView.setBorderStrokeWidth(10);
                 customZXingScannerView.setLaserEnabled(true);
                 customZXingScannerView.setSquareViewFinder(true);
@@ -179,7 +187,20 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
 
     @Override
     public void handleResult(Result rawResult) {
-        showDialog(rawResult.getText() + "", getString(R.string.ok));
+        if (PreferencesUtils.getBoolean(KEY_VIBRATE, true)) {
+            onSettingVibrate();
+        }
+        if (PreferencesUtils.getBoolean(KEY_OPEN_LINK, true)) {
+            if (isValidateURl(rawResult.getText())) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse("https://www.google.com.vn/search?q=" + rawResult.getText()));
+                startActivity(i);
+            } else {
+                openBrowser(rawResult.getText());
+            }
+        } else {
+            showDialog(rawResult.getText() + "", getString(R.string.ok));
+        }
         if (getActivity() == null) return;
         new Thread(() -> {
             HistoryRepository historyRepository = ((HistoryApp) getActivity().getApplication()).getRepository();
@@ -191,7 +212,14 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
             }
         }).start();
     }
-
+    private void onSettingVibrate() {
+        if (getActivity() == null) return;
+        if (Build.VERSION.SDK_INT >= 26) {
+            ((Vibrator) Objects.requireNonNull(getActivity().getSystemService(VIBRATOR_SERVICE))).vibrate(VibrationEffect.createOneShot(150, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            ((Vibrator) Objects.requireNonNull(getActivity().getSystemService(VIBRATOR_SERVICE))).vibrate(150);
+        }
+    }
     public void showDialog(final String msg, final String status) {
         if (getActivity() == null) return;
         final Dialog dialog = new Dialog(getActivity());
