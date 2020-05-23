@@ -9,7 +9,6 @@
         android:id="@+id/ivQRCode"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
-        android:src="@drawable/ic_icon_product"
         android:tint="#b2b2b2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,18 +20,20 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:text="@string/product"
+        android:visibility="gone"
         android:textColor="@color/colorTextApp"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintStart_toEndOf="@id/ivQRCode"
         app:layout_constraintTop_toTopOf="@id/ivQRCode" />
 
     <TextView
+        android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginLeft="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_2sdp"
-        android:text="1554ACBD221"
+        android:text=""
         android:textColor="#cecece"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@id/ivQRCode"

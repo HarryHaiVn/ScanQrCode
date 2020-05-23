@@ -21,60 +21,113 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp">
-            <TextView
-                style="@style/style_title"
+            <ImageView
+                android:id="@+id/ivMenu"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginLeft="@dimen/_20sdp"
-                android:layout_centerVertical="true"
-                android:text="@string/qr_code"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_16sdp" />
+                android:src="@drawable/ic_menu"
+                android:tint="@color/colorWhite" />
 
             <ImageView
-                android:id="@+id/ivQRCode"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="20dp"
+                android:id="@+id/ivChooseImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="20dp"
+                android:layout_marginEnd="@dimen/_25sdp"
+                android:layout_marginRight="@dimen/_25sdp"
                 android:layout_toStartOf="@+id/ivFlash"
                 android:layout_toLeftOf="@+id/ivFlash"
-                android:src="@drawable/ic_icon_qr_autofocus"
+                android:src="@drawable/d_scan_image"
                 android:tint="@color/colorWhite" />
 
             <ImageView
                 android:id="@+id/ivFlash"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
-                android:layout_alignParentEnd="true"
+                android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginRight="@dimen/_20sdp"
-                android:src="@drawable/ic_icon_flash"
+                android:src="@drawable/flash_off"
                 android:tint="@color/colorWhite" />
-        </RelativeLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tvContent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/content_qr"
-            android:textColor="@color/colorWhite"
-            android:textSize="16sp"
-            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tvContent"
-            android:layout_width="wrap_content"
+            <ImageView
+                android:id="@+id/ivFront"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/ivFlash"
+                android:layout_toRightOf="@+id/ivFlash"
+                android:src="@drawable/flip_camera"
+                android:tint="@color/colorWhite" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/zoom_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="50dp"
-            android:textColor="@color/colorWhite" />
+            android:layout_margin="@dimen/_20sdp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/zoomout_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/outline_zoom_out_24"
+                android:tint="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/zoomin_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:src="@drawable/outline_zoom_in_24"
+                android:tint="@android:color/white" />
+
+            <SeekBar
+                android:id="@+id/zoom_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_toStartOf="@id/zoomin_icon"
+                android:layout_toLeftOf="@id/zoomin_icon"
+                android:layout_toEndOf="@id/zoomout_icon"
+                android:layout_toRightOf="@id/zoomout_icon"
+                android:max="100" />
+
+        </RelativeLayout>
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_above="@+id/zoom_container"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:layout_marginLeft="@dimen/_20sdp"-->
+        <!--            android:layout_marginRight="@dimen/_20sdp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="@string/content_qr"-->
+        <!--            android:textColor="@color/colorWhite"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/tvContent"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentBottom="true"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:layout_marginBottom="50dp"-->
+        <!--            android:textColor="@color/colorWhite" />-->
     </RelativeLayout>
 
     <RelativeLayout

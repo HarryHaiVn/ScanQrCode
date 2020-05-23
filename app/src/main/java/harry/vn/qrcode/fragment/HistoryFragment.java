@@ -17,6 +17,7 @@ import harry.vn.qrcode.adapter.HistoryAdapter;
 import harry.vn.qrcode.db.HistoryRepository;
 import harry.vn.qrcode.listener.OnClickItemHistory;
 import harry.vn.qrcode.model.HistoryModel;
+import harry.vn.qrcode.model.MenuModel;
 import harry.vn.qrcode.utils.FragmentUtil;
 
 public class HistoryFragment extends BaseFragment implements OnClickItemHistory {
@@ -66,6 +67,10 @@ public class HistoryFragment extends BaseFragment implements OnClickItemHistory 
         Bundle bundle=new Bundle();
         bundle.putString(KEY_DATA,item.getLink());
         FragmentUtil.showFragment(getActivity().getSupportFragmentManager(), HistoryDetailFragment.newInstance(bundle), true, null, HistoryDetailFragment.class.getName(), false);
+    }
+
+    @Override
+    public void onClickItemMenu(MenuModel item, int position) {
     }
 
     @Override

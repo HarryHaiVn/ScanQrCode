@@ -9,4 +9,5 @@
     <color name="colorBlack">#000000</color>
     <color name="colorTextApp">#141414</color>
     <color name="colorOrange">#de864d</color>
+    <color name="result_line_bg">#ffe3e3e3</color>
 </resources>

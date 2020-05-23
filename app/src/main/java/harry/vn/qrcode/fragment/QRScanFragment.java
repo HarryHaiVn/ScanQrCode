@@ -33,6 +33,8 @@ import com.google.zxing.Reader;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
@@ -42,9 +44,11 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import harry.vn.qrcode.HistoryApp;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.bus.MessageEvent;
 import harry.vn.qrcode.db.HistoryRepository;
 import harry.vn.qrcode.model.HistoryModel;
 import harry.vn.qrcode.utils.PreferencesUtils;
+import harry.vn.qrcode.utils.Type;
 import harry.vn.qrcode.view.CustomZXingScannerView;
 import me.dm7.barcodescanner.core.IViewFinder;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -61,7 +65,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     public static final String TAG = "QRScanFragment";
 
     private ZXingScannerView mScannerView;
-    private static final int SELECT_PHOTO = 100;
+    public static final int SELECT_PHOTO = 100;
 
     @BindView(R.id.content_frame)
     ViewGroup contentFrame;
@@ -98,11 +102,16 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
 
     }
 
-    @OnClick(R.id.ivQRCode)
+    @OnClick(R.id.ivChooseImage)
     public void OnClick() {
         Intent photoPic = new Intent(Intent.ACTION_PICK);
         photoPic.setType("image/*");
         startActivityForResult(photoPic, SELECT_PHOTO);
+    }
+
+    @OnClick(R.id.ivMenu)
+    public void OnClickMenu() {
+        EventBus.getDefault().post(new MessageEvent(Type.MENU));
     }
 
     @Override
