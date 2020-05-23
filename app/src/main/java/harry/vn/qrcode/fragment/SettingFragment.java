@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.v4.app.Fragment;
 import android.widget.Switch;
 
 import java.util.Objects;
@@ -35,6 +36,10 @@ public class SettingFragment extends BaseFragment {
     @BindView(R.id.switchVibrate)
     Switch switchVibrate;
     AudioManager audioManager;
+
+    public static Fragment newInstance() {
+        return new SettingFragment();
+    }
 
     @Override
     protected int getLayoutRes() {

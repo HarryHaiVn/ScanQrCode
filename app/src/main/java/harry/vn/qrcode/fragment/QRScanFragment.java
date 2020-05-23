@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -71,6 +72,10 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     ViewGroup contentFrame;
     @BindView(R.id.rlProgressBar)
     RelativeLayout rlProgressBar;
+
+    public static Fragment newInstance() {
+        return new QRScanFragment();
+    }
 
     @Override
     protected int getLayoutRes() {

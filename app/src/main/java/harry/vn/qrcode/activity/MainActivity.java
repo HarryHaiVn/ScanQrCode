@@ -26,11 +26,13 @@ import butterknife.ButterKnife;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.adapter.MenuAdapter;
 import harry.vn.qrcode.bus.MessageEvent;
+import harry.vn.qrcode.fragment.HistoryFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
 import harry.vn.qrcode.fragment.SettingFragment;
 import harry.vn.qrcode.listener.OnClickItemHistory;
 import harry.vn.qrcode.model.HistoryModel;
 import harry.vn.qrcode.model.MenuModel;
+import harry.vn.qrcode.utils.FragmentUtil;
 import harry.vn.qrcode.utils.PermissionUtils;
 import harry.vn.qrcode.utils.PreferencesUtils;
 import harry.vn.qrcode.utils.Type;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
         PreferencesUtils.init(this);
         ButterKnife.bind(this);
         onPermission();
-        loadFragment(new QRScanFragment());
+        loadFragment();
         initMenu();
     }
 
@@ -80,10 +82,9 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
     }
 
 
-    private void loadFragment(Fragment fragment) {
+    private void loadFragment() {
         // load fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment).commit();
+        FragmentUtil.addFragment(getSupportFragmentManager(), QRScanFragment.newInstance(), true, null, QRScanFragment.class.getName(), false);
     }
 
     private void onPermission() {
@@ -122,16 +123,29 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
 
     @Override
     public void onClickItemMenu(MenuModel item, int position) {
+        drawerLayout.closeDrawers();
         switch (position) {
             case 0:
+                FragmentManager fm = getSupportFragmentManager();
+                int count = fm.getBackStackEntryCount();
+                for (int i = 0; i < count - 1; ++i) {
+                    fm.popBackStackImmediate();
+                }
                 break;
             case 1:
                 Intent photoPic = new Intent(Intent.ACTION_PICK);
                 photoPic.setType("image/*");
                 startActivityForResult(photoPic, SELECT_PHOTO);
                 break;
+            case 2:
+                FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                break;
+            case 3:
+                FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                break;
             case 6:
-                loadFragment(new SettingFragment());
+                FragmentUtil.addFragment(getSupportFragmentManager(), SettingFragment.newInstance(), true, null, SettingFragment.class.getName(), false);
+                break;
             case 7:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("https://play.google.com/store/apps/developer?id=com.vista.videos.kids"));
