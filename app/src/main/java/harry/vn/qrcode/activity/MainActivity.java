@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.adapter.MenuAdapter;
 import harry.vn.qrcode.bus.MessageEvent;
+import harry.vn.qrcode.fragment.FavoriteFragment;
 import harry.vn.qrcode.fragment.HistoryFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
 import harry.vn.qrcode.fragment.SettingFragment;
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
                 startActivityForResult(photoPic, SELECT_PHOTO);
                 break;
             case 2:
-                FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                FragmentUtil.addFragment(getSupportFragmentManager(), FavoriteFragment.newInstance(), true, null, FavoriteFragment.class.getName(), false);
                 break;
             case 3:
                 FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);

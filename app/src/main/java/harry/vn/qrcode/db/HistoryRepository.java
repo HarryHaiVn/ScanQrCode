@@ -31,6 +31,14 @@ public class HistoryRepository {
         mHistoryDao.insert(historyModel);
     }
 
+    public void updateHistory(final int id, boolean isLike) {
+        mHistoryDao.update(id, isLike);
+    }
+
+    public List<HistoryModel> loadFavorite() {
+        return mHistoryDao.loadFavorite(true);
+    }
+
     public List<HistoryModel> getAll() {
         return mHistoryDao.getAll();
     }

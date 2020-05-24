@@ -41,6 +41,15 @@
         app:layout_constraintTop_toBottomOf="@+id/txtProduct" />
 
     <ImageView
+        android:id="@+id/ivLike"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:src="@drawable/d_favorites"
+        android:tint="#f48744"
+        app:layout_constraintEnd_toStartOf="@+id/ivDelete"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/ivDelete"
         android:layout_width="@dimen/_24sdp"
         android:layout_height="@dimen/_24sdp"

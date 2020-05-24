@@ -5,6 +5,7 @@ import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryViewHolder> {
     private List<HistoryModel> data;
     private LayoutInflater mLayoutInflater;
     private OnClickItemHistory onClickItemHistory;
+
     public HistoryAdapter(Context context) {
         mLayoutInflater = LayoutInflater.from(context);
     }

@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:src="@drawable/ic_back" />
+
     <TextView
+        android:id="@+id/txtHistory"
         style="@style/style_title"
-        android:layout_gravity="center_horizontal"
+        android:layout_centerHorizontal="true"
         android:text="@string/history" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_2sdp"
+        android:layout_below="@+id/txtHistory"
+        android:background="@color/colorGray79" />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/rvHistory"
+        android:layout_below="@+id/view"
         android:layout_height="match_parent"
         android:padding="@dimen/_10sdp" />
-</LinearLayout>
+</RelativeLayout>

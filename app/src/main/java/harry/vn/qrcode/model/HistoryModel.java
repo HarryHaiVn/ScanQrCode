@@ -15,12 +15,22 @@ public class HistoryModel {
 
     @ColumnInfo(name = "link")
     public String mLink;
+    @ColumnInfo(name = "isLike")
+    public boolean isLike = false;
 
     public HistoryModel() {
     }
 
     public HistoryModel(String mLink) {
         this.mLink = mLink;
+    }
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setLike(boolean isLike) {
+        this.isLike = isLike;
     }
 
     public int getId() {
@@ -35,7 +45,7 @@ public class HistoryModel {
         return mLink;
     }
 
-    public void setmLink(String mLink) {
+    public void setLink(String mLink) {
         this.mLink = mLink;
     }
 }
