@@ -28,6 +28,7 @@ import harry.vn.qrcode.adapter.MenuAdapter;
 import harry.vn.qrcode.bus.MessageEvent;
 import harry.vn.qrcode.fragment.FavoriteFragment;
 import harry.vn.qrcode.fragment.HistoryFragment;
+import harry.vn.qrcode.fragment.MyQrCodeFragment;
 import harry.vn.qrcode.fragment.QRScanFragment;
 import harry.vn.qrcode.fragment.SettingFragment;
 import harry.vn.qrcode.listener.OnClickItemHistory;
@@ -143,6 +144,9 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
                 break;
             case 3:
                 FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                break;
+            case 4:
+                FragmentUtil.addFragment(getSupportFragmentManager(), MyQrCodeFragment.newInstance(), true, null, MyQrCodeFragment.class.getName(), false);
                 break;
             case 6:
                 FragmentUtil.addFragment(getSupportFragmentManager(), SettingFragment.newInstance(), true, null, SettingFragment.class.getName(), false);

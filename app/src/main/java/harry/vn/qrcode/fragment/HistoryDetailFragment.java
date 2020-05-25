@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,7 @@ public class HistoryDetailFragment extends BaseFragment {
     }
 
     @Override
-    protected void initChildView() {
+    protected void initChildView(View mView) {
         if (getArguments() != null) {
             txtQr = getArguments().getString(
                     KEY_DATA);

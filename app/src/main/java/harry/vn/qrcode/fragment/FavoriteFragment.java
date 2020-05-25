@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +41,7 @@ public class FavoriteFragment extends BaseFragment implements OnClickItemHistory
 
     HistoryAdapter mAdapter;
     @Override
-    protected void initChildView() {
+    protected void initChildView(View mView) {
         mAdapter = new HistoryAdapter(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvHistory.setLayoutManager(mLayoutManager);

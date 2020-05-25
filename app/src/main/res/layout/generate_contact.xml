@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/mycontact_instrcution"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/share_your_contact"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/APKTOOL_DUMMY_a6" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/APKTOOL_DUMMY_a5"
+                android:text="@string/share_your_contact_details"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/APKTOOL_DUMMY_a6" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:hint="@string/name"
+            android:lines="1"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/org"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:hint="@string/title_org"
+            android:lines="1"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:hint="@string/title_address"
+            android:lines="1"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:hint="@string/title_result_tel"
+            android:inputType="phone"
+            android:lines="1"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:hint="@string/title_result_email_address"
+            android:inputType="textEmailAddress"
+            android:lines="1"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_v_margin"
+            android:layout_marginBottom="@dimen/form_text_v_margin"
+            android:background="@drawable/inputb_bg"
+            android:gravity="top"
+            android:hint="@string/note"
+            android:lines="6"
+            android:textColor="@color/inputTextColor"
+            android:textSize="@dimen/form_text"
+            android:theme="@style/EditTextStyle" />
+
+        <TextView
+            android:id="@+id/name_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/required"
+            android:textColor="@color/errorColor"
+            android:textSize="@dimen/error_text_size"
+            android:visibility="gone" />
+    </LinearLayout>
+</ScrollView>

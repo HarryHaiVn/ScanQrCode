@@ -20,14 +20,14 @@ public abstract class BaseFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = inflater.inflate(getLayoutRes(), container, false);
         mUnBinder = ButterKnife.bind(this, mView);
-        initChildView();
+        initChildView(mView);
         initData();
         return mView;
     }
 
     protected abstract int getLayoutRes();
 
-    protected abstract void initChildView();
+    protected abstract void initChildView(View mView);
 
     protected abstract void initData();
 

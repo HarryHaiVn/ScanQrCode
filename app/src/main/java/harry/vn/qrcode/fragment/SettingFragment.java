@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.v4.app.Fragment;
+import android.view.View;
 import android.widget.Switch;
 
 import java.util.Objects;
@@ -47,7 +48,7 @@ public class SettingFragment extends BaseFragment {
     }
 
     @Override
-    protected void initChildView() {
+    protected void initChildView(View mView) {
         audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         switchAutoOpenLink.setChecked(PreferencesUtils.getBoolean(KEY_OPEN_LINK, true));
         switchAutoOpenLink.setOnCheckedChangeListener((compoundButton, b) -> {

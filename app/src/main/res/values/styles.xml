@@ -35,7 +35,13 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginRight">@dimen/_10sdp</item>
     </style>
-
+    <style name="EditTextStyle" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/form_text_color</item>
+        <item name="android:paddingLeft">16.0dip</item>
+        <item name="android:paddingTop">14.0dip</item>
+        <item name="android:paddingRight">16.0dip</item>
+        <item name="android:paddingBottom">14.0dip</item>
+    </style>
     <style name="style_image_history">
         <item name="android:layout_width">@dimen/_24sdp</item>
         <item name="android:layout_height">@dimen/_24sdp</item>

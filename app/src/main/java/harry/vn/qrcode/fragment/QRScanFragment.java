@@ -83,7 +83,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
     }
 
     @Override
-    protected void initChildView() {
+    protected void initChildView(View mView) {
         mScannerView = new ZXingScannerView(getActivity()) {
             @Override
             protected IViewFinder createViewFinderView(Context context) {

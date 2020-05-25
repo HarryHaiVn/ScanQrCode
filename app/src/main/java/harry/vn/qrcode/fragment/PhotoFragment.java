@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ public class PhotoFragment extends BaseFragment {
     }
 
     @Override
-    protected void initChildView() {
+    protected void initChildView(View mView) {
 
     }
 
