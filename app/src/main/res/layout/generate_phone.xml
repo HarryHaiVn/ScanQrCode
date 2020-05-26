@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="@dimen/form_text_v_margin"
+        android:layout_marginBottom="@dimen/form_text_v_margin"
+        android:background="@drawable/inputb_bg"
+        android:hint="@string/title_result_tel"
+        android:inputType="phone"
+        android:lines="1"
+        android:textColor="@color/inputTextColor"
+        android:textSize="@dimen/form_text"
+        android:theme="@style/EditTextStyle" />
+
+    <TextView
+        android:id="@+id/text_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="@color/errorColor"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="gone" />
+</LinearLayout>

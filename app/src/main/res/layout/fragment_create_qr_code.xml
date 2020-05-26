@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <ImageView
+            android:id="@+id/ivMenu"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/ic_menu"
+            android:tint="@color/colorBlack" />
+
+        <ImageView
+            android:id="@+id/ivDone"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_24sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/_10sdp"
+            android:src="@drawable/done" />
+
+        <TextView
+            android:id="@+id/txtHistory"
+            style="@style/style_title"
+            android:layout_centerHorizontal="true"
+            android:text="Tạo QR" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_below="@+id/txtHistory"
+            android:background="@color/colorGray79" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvTypeQr"
+            android:background="@drawable/inputb_bg"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/llInput"
+            android:visibility="gone"
+            android:padding="@dimen/_16sdp"
+            android:orientation="vertical"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_below="@+id/view"
+            app:layout_constraintTop_toTopOf="parent" />
+</RelativeLayout>

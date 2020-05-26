@@ -5,11 +5,15 @@ import android.support.v4.app.Fragment
 import android.view.View
 import android.widget.ImageView
 import harry.vn.qrcode.R
+import harry.vn.qrcode.bus.MessageEvent
+import harry.vn.qrcode.utils.Type
 import kotlinx.android.synthetic.main.fragment_my_qr.*
 import net.glxn.qrgen.android.QRCode
 import net.glxn.qrgen.core.scheme.VCard
+import org.greenrobot.eventbus.EventBus
 
 class MyQrCodeFragment : BaseFragment() {
+
     override fun getLayoutRes(): Int {
         return R.layout.fragment_my_qr
     }
@@ -19,8 +23,9 @@ class MyQrCodeFragment : BaseFragment() {
 
     override fun initChildView(mView: View) {
         val button = mView.findViewById<ImageView>(R.id.ivDone)
+        val ivMenu = mView.findViewById<ImageView>(R.id.ivMenu)
         button.setOnClickListener {
-            if (!isCheckVadidate()) {
+            if (!isCheckValidates()) {
                 name_error.visibility = View.VISIBLE
                 return@setOnClickListener
             }
@@ -46,9 +51,13 @@ class MyQrCodeFragment : BaseFragment() {
             txtNote1.text = txtNote.text.toString()
             button.visibility = View.GONE
         }
+
+        ivMenu.setOnClickListener {
+            EventBus.getDefault().post(MessageEvent(Type.MENU))
+        }
     }
 
-    private fun isCheckVadidate(): Boolean {
+    private fun isCheckValidates(): Boolean {
         if (email.text.toString().isBlank() || name.text.toString().isBlank() || address.text.toString().isBlank() || phone.text.toString().isBlank()
             || org.text.toString().isBlank() || txtNote.text.toString().isBlank()
         )

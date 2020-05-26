@@ -4,11 +4,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -26,6 +26,8 @@ import butterknife.ButterKnife;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.adapter.MenuAdapter;
 import harry.vn.qrcode.bus.MessageEvent;
+import harry.vn.qrcode.fragment.BaseFragment;
+import harry.vn.qrcode.fragment.CreateQrCodeFragment;
 import harry.vn.qrcode.fragment.FavoriteFragment;
 import harry.vn.qrcode.fragment.HistoryFragment;
 import harry.vn.qrcode.fragment.MyQrCodeFragment;
@@ -78,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recycleView.setLayoutManager(mLayoutManager);
         recycleView.setItemAnimator(new DefaultItemAnimator());
+        recycleView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recycleView.setAdapter(menuAdapter);
         menuAdapter.setListener(this);
         menuAdapter.setData(historyModelList);
@@ -148,6 +151,9 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
             case 4:
                 FragmentUtil.addFragment(getSupportFragmentManager(), MyQrCodeFragment.newInstance(), true, null, MyQrCodeFragment.class.getName(), false);
                 break;
+            case 5:
+                FragmentUtil.addFragment(getSupportFragmentManager(), CreateQrCodeFragment.newInstance(), true, null, CreateQrCodeFragment.class.getName(), false);
+                break;
             case 6:
                 FragmentUtil.addFragment(getSupportFragmentManager(), SettingFragment.newInstance(), true, null, SettingFragment.class.getName(), false);
                 break;
@@ -199,11 +205,21 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
     public void onBackPressed() {
         super.onBackPressed();
         FragmentManager fm = getSupportFragmentManager();
-        Fragment f = fm.findFragmentById(R.id.container);
+        if (getTagActiveFragment().equals(CreateQrCodeFragment.class.getName())) {
+            ((CreateQrCodeFragment) fm.findFragmentByTag(getTagActiveFragment())).onBackPress();
+            return;
+        }
         if (fm.getBackStackEntryCount() > 1) {
             fm.popBackStack();
         } else {
             finish();
         }
+    }
+
+    public String getTagActiveFragment() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            return null;
+        }
+        return getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1).getName();
     }
 }

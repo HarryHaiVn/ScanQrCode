@@ -31,6 +31,9 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract void initData();
 
+    public void onBackPress() {
+    }
+
     @Override
     public void onDestroy() {
         if (mUnBinder != null) {

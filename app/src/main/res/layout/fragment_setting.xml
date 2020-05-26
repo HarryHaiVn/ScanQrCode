@@ -5,6 +5,18 @@
     android:background="@color/colorWhite"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/ivMenu"
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:layout_marginStart="@dimen/_24sdp"
+        android:layout_marginLeft="@dimen/_24sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/ic_menu"
+        android:tint="@color/colorBlack"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/txtTitle"
         style="@style/style_title"

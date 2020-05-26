@@ -13,12 +13,16 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Switch;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import harry.vn.qrcode.R;
+import harry.vn.qrcode.bus.MessageEvent;
 import harry.vn.qrcode.utils.PreferencesUtils;
+import harry.vn.qrcode.utils.Type;
 
 import static android.content.Context.VIBRATOR_SERVICE;
 import static harry.vn.qrcode.utils.PreferencesUtils.KEY_AUTOFOCUS;
@@ -99,6 +103,11 @@ public class SettingFragment extends BaseFragment {
         intentSendMail.setData(Uri.parse("mailto:harryhaivn@gmail.com"));
         intentSendMail.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(Intent.createChooser(intentSendMail, "Send mail..."));
+    }
+
+    @OnClick(R.id.ivMenu)
+    public void OnClickIvMenu() {
+        EventBus.getDefault().post(new MessageEvent(Type.MENU));
     }
 
     @SuppressLint("IntentReset")

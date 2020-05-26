@@ -21,6 +21,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp">
+
             <ImageView
                 android:id="@+id/ivMenu"
                 android:layout_width="@dimen/_25sdp"

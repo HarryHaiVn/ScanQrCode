@@ -21,13 +21,9 @@
                 android:layout_width="@dimen/_24sdp"
                 android:layout_height="@dimen/_24sdp"
                 android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/ic_back" />
-
-            <ImageView
-                android:layout_width="@dimen/_24sdp"
-                android:layout_height="@dimen/_24sdp"
-                android:layout_margin="@dimen/_10sdp"
-                android:src="@drawable/ic_back" />
+                android:id="@+id/ivMenu"
+                android:tint="@color/colorBlack"
+                android:src="@drawable/ic_menu" />
 
             <ImageView
                 android:layout_width="@dimen/_24sdp"

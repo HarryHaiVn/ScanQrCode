@@ -1,7 +1,6 @@
 package harry.vn.qrcode.adapter;
 
 import android.annotation.SuppressLint;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,6 +21,8 @@ public class MenuViewHolder extends RecyclerView.ViewHolder {
     ImageView ivDelete;
     @BindView(R.id.ivQRCode)
     ImageView ivQRCode;
+    @BindView(R.id.ivLike)
+    ImageView ivLike;
     OnClickItemHistory onClickItemHistory;
 
     public MenuViewHolder(View itemView) {
@@ -35,7 +36,7 @@ public class MenuViewHolder extends RecyclerView.ViewHolder {
         txtProduct.setVisibility(View.GONE);
         txtName.setText(item.getName());
         txtName.setTextColor(itemView.getContext().getResources().getColor(R.color.colorButtonGrey));
-        ivQRCode.setBackgroundResource(item.getResId());
+        ivQRCode.setImageResource(item.getResId());
         itemView.setOnClickListener(v -> {
             if (onClickItemHistory != null) {
                 onClickItemHistory.onClickItemMenu(item,position);

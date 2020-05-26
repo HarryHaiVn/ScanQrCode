@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/lat"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/form_text_v_margin"
+        android:layout_marginBottom="@dimen/form_text_v_margin"
+        android:background="@drawable/inputb_bg"
+        android:hint="@string/hint_lat"
+        android:inputType="numberDecimal"
+        android:lines="1"
+        android:textColor="@color/inputTextColor"
+        android:textSize="@dimen/form_text"
+        android:theme="@style/EditTextStyle" />
+
+    <EditText
+        android:id="@+id/lng"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/form_text_v_margin"
+        android:layout_marginBottom="@dimen/form_text_v_margin"
+        android:background="@drawable/inputb_bg"
+        android:hint="@string/hint_lng"
+        android:inputType="numberDecimal"
+        android:lines="1"
+        android:textColor="@color/inputTextColor"
+        android:textSize="@dimen/form_text"
+        android:theme="@style/EditTextStyle" />
+
+    <EditText
+        android:id="@+id/query"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/form_text_v_margin"
+        android:layout_marginBottom="@dimen/form_text_v_margin"
+        android:background="@drawable/inputb_bg"
+        android:hint="@string/hint_query"
+        android:lines="1"
+        android:singleLine="false"
+        android:textColor="@color/inputTextColor"
+        android:textSize="@dimen/form_text"
+        android:theme="@style/EditTextStyle" />
+
+    <TextView
+        android:id="@+id/lng_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="@color/errorColor"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/lat_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="@color/errorColor"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="gone" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip"
+        android:layout_weight="120.0" />
+</LinearLayout>

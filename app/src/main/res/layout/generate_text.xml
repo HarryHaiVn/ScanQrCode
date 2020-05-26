@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/text"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/inputb_bg"
+        android:gravity="top"
+        android:hint="@string/result_text"
+        android:lines="12"
+        android:singleLine="false"
+        android:textColor="@color/inputTextColor"
+        android:theme="@style/EditTextStyle" />
+
+    <TextView
+        android:id="@+id/text_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/required"
+        android:textColor="@color/errorColor"
+        android:textSize="@dimen/error_text_size"
+        android:visibility="gone" />
+</LinearLayout>
