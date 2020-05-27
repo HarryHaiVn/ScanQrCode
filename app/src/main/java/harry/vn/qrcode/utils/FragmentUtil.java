@@ -78,7 +78,7 @@ public class FragmentUtil {
 
         fragmentTransaction.add(R.id.container, fragment, tag);
         if (isPushInsteadOfReplace) {
-            fragmentTransaction.addToBackStack(fragment.getClass().getName());
+            fragmentTransaction.addToBackStack(tag);
         }
 
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);

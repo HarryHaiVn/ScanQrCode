@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import harry.vn.qrcode.R
 import harry.vn.qrcode.adapter.MenuAdapter
 import harry.vn.qrcode.bus.MessageEvent
@@ -15,6 +16,7 @@ import harry.vn.qrcode.listener.OnClickItemHistory
 import harry.vn.qrcode.model.HistoryModel
 import harry.vn.qrcode.model.MenuModel
 import harry.vn.qrcode.utils.Type
+import harry.vn.qrcode.view.GenerateWeblinkView
 import kotlinx.android.synthetic.main.fragment_create_qr_code.*
 import org.greenrobot.eventbus.EventBus
 import java.util.*
@@ -22,16 +24,29 @@ import java.util.*
 class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
     private var menuAdapter: MenuAdapter? = null
     var rvTypeQr: RecyclerView? = null
+    var isBack = true
     override fun getLayoutRes(): Int {
         return R.layout.fragment_create_qr_code
     }
 
     override fun initChildView(mView: View?) {
         rvTypeQr = mView?.findViewById(R.id.rvTypeQr)
+        val ivDone: ImageView? = mView?.findViewById(R.id.ivDone)
         val ivMenu: ImageView? = mView?.findViewById(R.id.ivMenu)
         ivMenu?.setOnClickListener {
             EventBus.getDefault().post(MessageEvent(Type.MENU))
         }
+        ivDone?.setOnClickListener {
+            val count: Int = llInput.childCount
+            for (i in 0 until count) {
+                val view: View = llInput.getChildAt(i)
+                if (view is GenerateWeblinkView) {
+                    Toast.makeText(context, "ddddddddddddd", Toast.LENGTH_SHORT).show()
+                    view.onClickDone()
+                }
+            }
+        }
+
         initTypeQr()
     }
 
@@ -71,11 +86,12 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
     override fun onClickItemMenu(item: MenuModel?, position: Int) {
         rvTypeQr?.let {
             it.visibility = View.GONE
+            isBack = false
         }
         when (position) {
             0 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_weblink, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_weblink, llInput, false)
+                llInput.addView(GenerateWeblinkView(context))
                 llInput.visibility = View.VISIBLE
             }
             1 -> {
@@ -125,5 +141,16 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
     }
 
     override fun onClickItem(item: HistoryModel?) {
+    }
+
+    override fun onBackPress() {
+        if (isBack) {
+            activity?.supportFragmentManager?.popBackStack()
+        } else {
+            isBack = true
+            rvTypeQr?.visibility = View.VISIBLE
+            llInput?.visibility = View.GONE
+            llInput.removeAllViews()
+        }
     }
 }

@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
 
     private void loadFragment() {
         // load fragment
-        FragmentUtil.addFragment(getSupportFragmentManager(), QRScanFragment.newInstance(), true, null, QRScanFragment.class.getName(), false);
+        FragmentUtil.showFragment(getSupportFragmentManager(), QRScanFragment.newInstance(), true, null, QRScanFragment.class.getName(), false);
     }
 
     private void onPermission() {
@@ -143,19 +143,19 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
                 startActivityForResult(photoPic, SELECT_PHOTO);
                 break;
             case 2:
-                FragmentUtil.addFragment(getSupportFragmentManager(), FavoriteFragment.newInstance(), true, null, FavoriteFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), FavoriteFragment.newInstance(), true, null, FavoriteFragment.class.getName(), false);
                 break;
             case 3:
-                FragmentUtil.addFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
                 break;
             case 4:
-                FragmentUtil.addFragment(getSupportFragmentManager(), MyQrCodeFragment.newInstance(), true, null, MyQrCodeFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), MyQrCodeFragment.newInstance(), true, null, MyQrCodeFragment.class.getName(), false);
                 break;
             case 5:
-                FragmentUtil.addFragment(getSupportFragmentManager(), CreateQrCodeFragment.newInstance(), true, null, CreateQrCodeFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), CreateQrCodeFragment.newInstance(), true, null, CreateQrCodeFragment.class.getName(), false);
                 break;
             case 6:
-                FragmentUtil.addFragment(getSupportFragmentManager(), SettingFragment.newInstance(), true, null, SettingFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), SettingFragment.newInstance(), true, null, SettingFragment.class.getName(), false);
                 break;
             case 7:
                 Intent intent = new Intent(Intent.ACTION_VIEW);
@@ -203,7 +203,6 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         FragmentManager fm = getSupportFragmentManager();
         if (getTagActiveFragment().equals(CreateQrCodeFragment.class.getName())) {
             ((CreateQrCodeFragment) fm.findFragmentByTag(getTagActiveFragment())).onBackPress();
