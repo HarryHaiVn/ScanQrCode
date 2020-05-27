@@ -36,7 +36,7 @@ class MyQrCodeFragment : BaseFragment() {
                 .setPhoneNumber(phone.text.toString())
                 .setEmail(email.text.toString())
             myQRCode.note = txtNote.text.toString()
-            val file = QRCode.from(myQRCode).withCharset("UTF-8").file()
+            val file = QRCode.from(myQRCode).withCharset("UTF-8").withSize(250, 250).file()
             val filePath: String = file.path
             val bitmap = BitmapFactory.decodeFile(filePath)
             ivQr.setImageBitmap(bitmap)

@@ -1,14 +1,15 @@
 package harry.vn.qrcode.fragment
 
+import android.app.Activity
+import android.graphics.BitmapFactory
 import android.support.v4.app.Fragment
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.Toast
 import harry.vn.qrcode.R
 import harry.vn.qrcode.adapter.MenuAdapter
 import harry.vn.qrcode.bus.MessageEvent
@@ -16,15 +17,24 @@ import harry.vn.qrcode.listener.OnClickItemHistory
 import harry.vn.qrcode.model.HistoryModel
 import harry.vn.qrcode.model.MenuModel
 import harry.vn.qrcode.utils.Type
-import harry.vn.qrcode.view.GenerateWeblinkView
+import harry.vn.qrcode.view.GenerateEmailView
+import harry.vn.qrcode.view.GeneratePhoneView
+import harry.vn.qrcode.view.GenerateSmsView
+import harry.vn.qrcode.view.GenerateTextView
+import harry.vn.qrcode.view.GenerateWebLinkView
+import harry.vn.qrcode.view.GeneratsEventView
+import harry.vn.qrcode.view.GeneratsLocationView
+import harry.vn.qrcode.view.GeneratsWifiView
+import harry.vn.qrcode.view.IGenQrView
 import kotlinx.android.synthetic.main.fragment_create_qr_code.*
 import org.greenrobot.eventbus.EventBus
+import java.io.File
 import java.util.*
 
-class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
+class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory, IGenQrView {
     private var menuAdapter: MenuAdapter? = null
     var rvTypeQr: RecyclerView? = null
-    var isBack = true
+    var step = 0
     override fun getLayoutRes(): Int {
         return R.layout.fragment_create_qr_code
     }
@@ -37,12 +47,34 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
             EventBus.getDefault().post(MessageEvent(Type.MENU))
         }
         ivDone?.setOnClickListener {
+            step = 2
             val count: Int = llInput.childCount
             for (i in 0 until count) {
-                val view: View = llInput.getChildAt(i)
-                if (view is GenerateWeblinkView) {
-                    Toast.makeText(context, "ddddddddddddd", Toast.LENGTH_SHORT).show()
-                    view.onClickDone()
+                when (val view: View = llInput.getChildAt(i)) {
+                    is GenerateWebLinkView -> {
+                        view.onClickDone(this)
+                    }
+                    is GeneratePhoneView -> {
+                        view.onClickDone(this)
+                    }
+                    is GeneratsWifiView -> {
+                        view.onClickDone(this)
+                    }
+                    is GenerateEmailView -> {//chi minh email
+                        view.onClickDone(this)
+                    }
+                    is GenerateTextView -> {
+                        view.onClickDone(this)
+                    }
+                    is GenerateSmsView -> {
+                        view.onClickDone(this)
+                    }
+                    is GeneratsEventView -> {//not support SubSchema
+                        view.onClickDone(this)
+                    }
+                    is GeneratsLocationView -> {
+                        view.onClickDone(this)
+                    }
                 }
             }
         }
@@ -86,52 +118,52 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
     override fun onClickItemMenu(item: MenuModel?, position: Int) {
         rvTypeQr?.let {
             it.visibility = View.GONE
-            isBack = false
+            step = 1
         }
         when (position) {
             0 -> {
 //                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_weblink, llInput, false)
-                llInput.addView(GenerateWeblinkView(context))
+                llInput.addView(GenerateWebLinkView(context))
                 llInput.visibility = View.VISIBLE
             }
             1 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_text, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_text, llInput, false)
+                llInput.addView(GenerateTextView(context))
                 llInput.visibility = View.VISIBLE
             }
             2 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_weblink, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_contact, llInput, false)
+                llInput.addView(GenerateWebLinkView(context))
                 llInput.visibility = View.VISIBLE
             }
             3 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_email, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_email, llInput, false)
+                llInput.addView(GenerateEmailView(context))
                 llInput.visibility = View.VISIBLE
             }
             4 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_sms, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_sms, llInput, false)
+                llInput.addView(GenerateSmsView(context))
                 llInput.visibility = View.VISIBLE
             }
             5 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_location, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_location, llInput, false)
+                llInput.addView(GeneratsLocationView(context))
                 llInput.visibility = View.VISIBLE
             }
             6 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_phone, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_phone, llInput, false)
+                llInput.addView(GeneratePhoneView(context))
                 llInput.visibility = View.VISIBLE
             }
             7 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_event, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_event, llInput, false)
+                llInput.addView(GeneratsEventView(context))
                 llInput.visibility = View.VISIBLE
             }
             8 -> {
-                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_wifi, llInput, false)
-                llInput.addView(view)
+//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_wifi, llInput, false)
+                llInput.addView(GeneratsWifiView(context))
                 llInput.visibility = View.VISIBLE
             }
         }
@@ -144,13 +176,39 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory {
     }
 
     override fun onBackPress() {
-        if (isBack) {
+        if (step == 0) {
             activity?.supportFragmentManager?.popBackStack()
-        } else {
-            isBack = true
+        } else if (step == 1) {
+            step = 0
             rvTypeQr?.visibility = View.VISIBLE
             llInput?.visibility = View.GONE
             llInput.removeAllViews()
+        } else if (step == 2) {
+            step = 1
+            llInput?.visibility = View.VISIBLE
+            llQr?.visibility = View.GONE
+        }
+    }
+
+    override fun onGenQr(file: File) {
+        hideKeyboard()
+        val filePath: String = file.path
+        val bitmap = BitmapFactory.decodeFile(filePath)
+        ivQr.setImageBitmap(bitmap)
+        llInput?.visibility = View.GONE
+        llQr?.visibility = View.VISIBLE
+    }
+
+    private fun hideKeyboard() {
+        activity?.let {
+            val imm = it.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            //Find the currently focused view, so we can grab the correct window token from it.
+            var view = it.currentFocus
+            //If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = View(activity)
+            }
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 }
