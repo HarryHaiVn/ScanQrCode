@@ -3,7 +3,16 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
+    <TextView
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:drawableStart="@drawable/after_phone"
+        android:drawableLeft="@drawable/after_phone"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:text="@string/phone"
+        android:textStyle="bold" />
     <EditText
         android:id="@+id/phone"
         android:layout_width="fill_parent"

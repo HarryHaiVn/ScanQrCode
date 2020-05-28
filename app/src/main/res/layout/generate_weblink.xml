@@ -4,6 +4,16 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="@dimen/_24sdp"
+        android:layout_height="@dimen/_24sdp"
+        android:gravity="center_vertical"
+        android:drawableStart="@drawable/icon_weblink"
+        android:drawableLeft="@drawable/icon_weblink"
+        android:drawablePadding="5dp"
+        android:textStyle="bold"
+        android:singleLine="true"
+        android:text="@string/web" />
     <EditText
         android:id="@+id/text"
         android:layout_width="fill_parent"

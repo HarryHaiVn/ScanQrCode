@@ -12,8 +12,9 @@
         android:layout_marginBottom="@dimen/form_text_v_margin"
         android:background="@drawable/inputb_bg"
         android:hint="@string/hint_lat"
+        android:imeOptions="actionNext"
         android:inputType="numberDecimal"
-        android:lines="1"
+        android:maxLines="1"
         android:textColor="@color/inputTextColor"
         android:textSize="@dimen/form_text"
         android:theme="@style/EditTextStyle" />
@@ -26,8 +27,9 @@
         android:layout_marginBottom="@dimen/form_text_v_margin"
         android:background="@drawable/inputb_bg"
         android:hint="@string/hint_lng"
+        android:imeOptions="actionNext"
         android:inputType="numberDecimal"
-        android:lines="1"
+        android:maxLines="1"
         android:textColor="@color/inputTextColor"
         android:textSize="@dimen/form_text"
         android:theme="@style/EditTextStyle" />
@@ -39,8 +41,10 @@
         android:layout_marginBottom="@dimen/form_text_v_margin"
         android:background="@drawable/inputb_bg"
         android:hint="@string/hint_query"
-        android:lines="1"
+        android:maxLines="1"
+        android:id="@+id/txtQuery"
         android:singleLine="false"
+        android:imeOptions="actionDone"
         android:textColor="@color/inputTextColor"
         android:textSize="@dimen/form_text"
         android:theme="@style/EditTextStyle" />
@@ -49,14 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/required"
-        android:textColor="@color/errorColor"
-        android:textSize="@dimen/error_text_size"
-        android:visibility="gone" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/required"
+        android:id="@+id/name_error"
         android:textColor="@color/errorColor"
         android:textSize="@dimen/error_text_size"
         android:visibility="gone" />
