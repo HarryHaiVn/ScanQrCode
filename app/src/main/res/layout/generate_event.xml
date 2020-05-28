@@ -5,7 +5,6 @@
     android:orientation="vertical">
 
     <CheckBox
-        android:id="@+id/event_all_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/all_day_event"
@@ -25,7 +24,6 @@
         android:theme="@style/EditTextStyle" />
 
     <EditText
-        android:id="@+id/location"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/form_text_v_margin"
@@ -38,7 +36,6 @@
         android:theme="@style/EditTextStyle" />
 
     <EditText
-        android:id="@+id/description"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_marginTop="@dimen/form_text_v_margin"
@@ -57,7 +54,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/event_end_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/event_button_pad"
@@ -65,7 +61,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/event_end_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/time_margin"
@@ -80,7 +75,6 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/event_start_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="@dimen/event_button_pad"
@@ -88,7 +82,6 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/event_start_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/time_margin"

@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/generate_container"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -49,14 +48,12 @@
         </RelativeLayout>
 
         <LinearLayout
-            android:id="@+id/subtitle_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="@dimen/_18sdp">
 
             <ImageView
-                android:id="@+id/subtitle_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -64,7 +61,6 @@
                 android:tint="@color/colorBlack" />
 
             <TextView
-                android:id="@+id/subtitle_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -86,7 +82,6 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/mycontact_instrcution"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -123,7 +118,8 @@
                 android:background="@drawable/inputb_bg"
                 android:hint="@string/name"
                 android:imeOptions="actionNext"
-                android:lines="1"
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />
@@ -137,7 +133,8 @@
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:background="@drawable/inputb_bg"
                 android:hint="@string/title_org"
-                android:lines="1"
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />
@@ -150,8 +147,9 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_8sdp"
                 android:background="@drawable/inputb_bg"
+                android:inputType="text"
                 android:hint="@string/title_address"
-                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />
@@ -166,7 +164,7 @@
                 android:imeOptions="actionNext"
                 android:hint="@string/title_result_tel"
                 android:inputType="phone"
-                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />
@@ -181,7 +179,7 @@
                 android:background="@drawable/inputb_bg"
                 android:hint="@string/title_result_email_address"
                 android:inputType="textEmailAddress"
-                android:lines="1"
+                android:maxLines="1"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />
@@ -196,7 +194,8 @@
                 android:background="@drawable/inputb_bg"
                 android:gravity="top"
                 android:hint="@string/note"
-                android:lines="6"
+                android:inputType="text"
+                android:maxLines="6"
                 android:textColor="@color/inputTextColor"
                 android:textSize="@dimen/_16sdp"
                 android:theme="@style/EditTextStyle" />

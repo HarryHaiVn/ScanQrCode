@@ -63,7 +63,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ivLink" />
 
     <TextView
-        android:id="@+id/txtAutoFocus"
         style="@style/style_text_setting"
         android:text="@string/autofocus"
         app:layout_constraintBottom_toBottomOf="@+id/ivAutoFocus"
@@ -85,7 +84,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ivAutoFocus" />
 
     <TextView
-        android:id="@+id/txtSound"
         style="@style/style_text_setting"
         android:text="@string/sound"
         app:layout_constraintBottom_toBottomOf="@+id/ivSound"
@@ -107,7 +105,6 @@
         app:layout_constraintTop_toBottomOf="@+id/ivSound" />
 
     <TextView
-        android:id="@+id/txtVibrate"
         style="@style/style_text_setting"
         android:text="@string/vibrate"
         app:layout_constraintBottom_toBottomOf="@+id/ivVibrate"

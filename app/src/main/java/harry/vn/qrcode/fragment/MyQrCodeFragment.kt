@@ -1,8 +1,10 @@
 package harry.vn.qrcode.fragment
 
+import android.app.Activity
 import android.graphics.BitmapFactory
 import android.support.v4.app.Fragment
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import harry.vn.qrcode.R
 import harry.vn.qrcode.bus.MessageEvent
@@ -25,6 +27,7 @@ class MyQrCodeFragment : BaseFragment() {
         val button = mView.findViewById<ImageView>(R.id.ivDone)
         val ivMenu = mView.findViewById<ImageView>(R.id.ivMenu)
         button.setOnClickListener {
+            hideKeyboard()
             if (!isCheckValidates()) {
                 name_error.visibility = View.VISIBLE
                 return@setOnClickListener
@@ -56,7 +59,18 @@ class MyQrCodeFragment : BaseFragment() {
             EventBus.getDefault().post(MessageEvent(Type.MENU))
         }
     }
-
+    private fun hideKeyboard() {
+        activity?.let {
+            val imm = it.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+            //Find the currently focused view, so we can grab the correct window token from it.
+            var view = it.currentFocus
+            //If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = View(activity)
+            }
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
     private fun isCheckValidates(): Boolean {
         if (email.text.toString().isBlank() || name.text.toString().isBlank() || address.text.toString().isBlank() || phone.text.toString().isBlank()
             || org.text.toString().isBlank() || txtNote.text.toString().isBlank()

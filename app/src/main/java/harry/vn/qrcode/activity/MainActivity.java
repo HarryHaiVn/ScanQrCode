@@ -68,16 +68,16 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
     private void initMenu() {
         List<MenuModel> historyModelList = new ArrayList<>();
         menuAdapter = new MenuAdapter(getApplicationContext());
-        historyModelList.add(new MenuModel(R.drawable.d_scan, "Quét"));
-        historyModelList.add(new MenuModel(R.drawable.d_scan_image, "Quét hình ảnh"));
-        historyModelList.add(new MenuModel(R.drawable.d_favorites, "Yêu thích"));
-        historyModelList.add(new MenuModel(R.drawable.d_history, "Lịch sử"));
-        historyModelList.add(new MenuModel(R.drawable.d_my_qr, "QR của tôi"));
-        historyModelList.add(new MenuModel(R.drawable.d_create, "Tạo QR"));
-        historyModelList.add(new MenuModel(R.drawable.d_settings, "Cài đặt"));
-        historyModelList.add(new MenuModel(R.drawable.d_share, "Chia sẻ"));
-        historyModelList.add(new MenuModel(R.drawable.d_create, "Ứng dụng của chúng tôi"));
-        historyModelList.add(new MenuModel(R.drawable.d_favorites, "Loại bỏ quảng cáo"));
+        historyModelList.add(new MenuModel(R.drawable.d_scan, getString(R.string.scan)));
+        historyModelList.add(new MenuModel(R.drawable.d_scan_image, getString(R.string.scan_image)));
+        historyModelList.add(new MenuModel(R.drawable.d_favorites, getString(R.string.favorite)));
+        historyModelList.add(new MenuModel(R.drawable.d_history, getString(R.string.history)));
+        historyModelList.add(new MenuModel(R.drawable.d_my_qr, getString(R.string.create_my_qr)));
+        historyModelList.add(new MenuModel(R.drawable.d_create, getString(R.string.create_qr)));
+        historyModelList.add(new MenuModel(R.drawable.d_settings, getString(R.string.setting)));
+        historyModelList.add(new MenuModel(R.drawable.d_share, getString(R.string.share)));
+        historyModelList.add(new MenuModel(R.drawable.d_create, getString(R.string.my_app)));
+        historyModelList.add(new MenuModel(R.drawable.d_favorites, getString(R.string.remove_qc)));
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recycleView.setLayoutManager(mLayoutManager);
         recycleView.setItemAnimator(new DefaultItemAnimator());

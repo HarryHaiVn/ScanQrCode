@@ -7,25 +7,33 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import harry.vn.qrcode.HistoryApp;
 import harry.vn.qrcode.R;
 import harry.vn.qrcode.adapter.HistoryAdapter;
+import harry.vn.qrcode.bus.MessageEvent;
 import harry.vn.qrcode.db.HistoryRepository;
 import harry.vn.qrcode.listener.OnClickItemHistory;
 import harry.vn.qrcode.model.HistoryModel;
 import harry.vn.qrcode.model.MenuModel;
 import harry.vn.qrcode.utils.FragmentUtil;
+import harry.vn.qrcode.utils.Type;
 
 public class FavoriteFragment extends BaseFragment implements OnClickItemHistory {
     public static final String KEY_DATA = "DATA";
     private List<HistoryModel> listData;
     @BindView(R.id.rvHistory)
     RecyclerView rvHistory;
+    @BindView(R.id.txtHistory)
+    TextView txtHistory;
 
     public static FavoriteFragment newInstance() {
         Bundle args = new Bundle();
@@ -42,6 +50,7 @@ public class FavoriteFragment extends BaseFragment implements OnClickItemHistory
     HistoryAdapter mAdapter;
     @Override
     protected void initChildView(View mView) {
+        txtHistory.setText(getString(R.string.favorite));
         mAdapter = new HistoryAdapter(getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         rvHistory.setLayoutManager(mLayoutManager);
@@ -96,5 +105,9 @@ public class FavoriteFragment extends BaseFragment implements OnClickItemHistory
                     dialog.dismiss();
                 })
                 .show();
+    }
+    @OnClick(R.id.ivMenu)
+    public void OnClickIvMenu() {
+        EventBus.getDefault().post(new MessageEvent(Type.MENU));
     }
 }

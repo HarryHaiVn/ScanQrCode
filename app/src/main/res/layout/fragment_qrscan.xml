@@ -56,7 +56,6 @@
                 android:tint="@color/colorWhite" />
 
             <ImageView
-                android:id="@+id/ivFront"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_25sdp"
                 android:layout_centerVertical="true"
@@ -68,7 +67,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/zoom_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -96,7 +94,6 @@
                 android:tint="@android:color/white" />
 
             <SeekBar
-                android:id="@+id/zoom_seekbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_8sdp"

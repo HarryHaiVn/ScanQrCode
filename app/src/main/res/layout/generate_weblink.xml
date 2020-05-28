@@ -16,7 +16,6 @@
         android:theme="@style/EditTextStyle" />
 
     <TextView
-        android:id="@+id/text_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/required"
