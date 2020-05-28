@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -52,49 +51,6 @@ public class FragmentUtil {
         fragmentTransaction.replace(R.id.container, fragment, tag);
         if (isPushInsteadOfReplace) {
             fragmentTransaction.addToBackStack(fragment.getClass().getName());
-        }
-
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-        fragmentTransaction.commit();
-    }
-
-    public static void addFragment(FragmentManager fragmentManager, @NonNull Fragment fragment,
-                                   boolean isPushInsteadOfReplace, @Nullable Bundle data,
-                                   @Nullable String tag, boolean isShowAnimation) {
-        if (fragmentManager == null) {
-            return;
-        }
-
-        if (data != null) {
-            fragment.setArguments(data);
-        }
-
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-//        if (isShowAnimation) {
-//            fragmentTransaction.setCustomAnimations(R.anim.fade_in,
-//                    R.anim.fade_out, R.anim.fade_in, R.anim.fade_out);
-//        }
-
-        fragmentTransaction.add(R.id.container, fragment, tag);
-        if (isPushInsteadOfReplace) {
-            fragmentTransaction.addToBackStack(tag);
-        }
-
-        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);
-        fragmentTransaction.commit();
-    }
-
-    public static void addFragment(FragmentActivity activity, @NonNull Fragment fragment,
-                                   boolean isAddToBackStack, @Nullable String tag) {
-        if (activity == null) {
-            return;
-        }
-        FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager()
-                .beginTransaction();
-        fragmentTransaction.add(R.id.container, fragment, tag);
-        if (isAddToBackStack) {
-            fragmentTransaction.addToBackStack(tag);
         }
 
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_NONE);

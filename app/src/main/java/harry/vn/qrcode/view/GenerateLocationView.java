@@ -15,20 +15,20 @@ import java.util.List;
 
 import harry.vn.qrcode.R;
 
-public class GeneratsLocationView extends LinearLayout implements IView {
+public class GenerateLocationView extends LinearLayout implements IView {
     EditText lat;
     EditText lng;
 
-    public GeneratsLocationView(Context context) {
+    public GenerateLocationView(Context context) {
         super(context);
         initView();
     }
 
-    public GeneratsLocationView(Context context, @Nullable AttributeSet attrs) {
+    public GenerateLocationView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public GeneratsLocationView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GenerateLocationView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -46,6 +46,6 @@ public class GeneratsLocationView extends LinearLayout implements IView {
         list.add(lng.getText().toString());
         geoInfo.setPoints(list);
         iGenQrView.onGenQr(QRCode.from(geoInfo).withSize(250, 250).file());
-        Toast.makeText(getContext(), "GeneratsLocationView", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "GenerateLocationView", Toast.LENGTH_SHORT).show();
     }
 }

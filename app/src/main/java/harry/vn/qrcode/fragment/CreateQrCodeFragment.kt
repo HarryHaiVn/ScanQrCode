@@ -23,7 +23,7 @@ import harry.vn.qrcode.view.GenerateSmsView
 import harry.vn.qrcode.view.GenerateTextView
 import harry.vn.qrcode.view.GenerateWebLinkView
 import harry.vn.qrcode.view.GeneratsEventView
-import harry.vn.qrcode.view.GeneratsLocationView
+import harry.vn.qrcode.view.GenerateLocationView
 import harry.vn.qrcode.view.GeneratsWifiView
 import harry.vn.qrcode.view.IGenQrView
 import kotlinx.android.synthetic.main.fragment_create_qr_code.*
@@ -72,7 +72,7 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory, IGenQrView {
                     is GeneratsEventView -> {//not support SubSchema
                         view.onClickDone(this)
                     }
-                    is GeneratsLocationView -> {
+                    is GenerateLocationView -> {
                         view.onClickDone(this)
                     }
                 }
@@ -148,7 +148,7 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory, IGenQrView {
             }
             5 -> {
 //                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_location, llInput, false)
-                llInput.addView(GeneratsLocationView(context))
+                llInput.addView(GenerateLocationView(context))
                 llInput.visibility = View.VISIBLE
             }
             6 -> {

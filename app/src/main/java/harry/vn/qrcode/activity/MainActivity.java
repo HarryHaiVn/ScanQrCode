@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnClickItemHistor
     @BindView(R.id.recycleView)
     RecyclerView recycleView;
     MenuAdapter menuAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
