@@ -95,15 +95,15 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory, IGenQrView {
     private fun initTypeQr() {
         val historyModelList: MutableList<MenuModel> = ArrayList()
         menuAdapter = MenuAdapter(activity)
-        historyModelList.add(MenuModel(R.drawable.icon_weblink, "Liên kết web"))
-        historyModelList.add(MenuModel(R.drawable.icon_plaintext, "Văn bản"))
-        historyModelList.add(MenuModel(R.drawable.d_my_qr, "Liên Hệ"))
-        historyModelList.add(MenuModel(R.drawable.after_email, "Email"))
-        historyModelList.add(MenuModel(R.drawable.icon_sms, "SMS"))
-        historyModelList.add(MenuModel(R.drawable.after_location, "Địa lý"))
-        historyModelList.add(MenuModel(R.drawable.after_phone, "Điện thoại"))
-        historyModelList.add(MenuModel(R.drawable.icon_calendar, "Lịch"))
-        historyModelList.add(MenuModel(R.drawable.icon_connect, "Wifi"))
+        historyModelList.add(MenuModel(R.drawable.icon_weblink, getString(R.string.web)))
+        historyModelList.add(MenuModel(R.drawable.icon_plaintext, getString(R.string.word)))
+        historyModelList.add(MenuModel(R.drawable.d_my_qr, getString(R.string.contact)))
+        historyModelList.add(MenuModel(R.drawable.after_email, getString(R.string.email)))
+        historyModelList.add(MenuModel(R.drawable.icon_sms, getString(R.string.sms)))
+        historyModelList.add(MenuModel(R.drawable.after_location, getString(R.string.location)))
+        historyModelList.add(MenuModel(R.drawable.after_phone, getString(R.string.phone)))
+        historyModelList.add(MenuModel(R.drawable.icon_calendar, getString(R.string.calendar)))
+        historyModelList.add(MenuModel(R.drawable.icon_connect, getString(R.string.wifi)))
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(activity)
         rvTypeQr?.let {
             it.layoutManager = mLayoutManager
@@ -122,47 +122,38 @@ class CreateQrCodeFragment : BaseFragment(), OnClickItemHistory, IGenQrView {
         }
         when (position) {
             0 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_weblink, llInput, false)
                 llInput.addView(GenerateWebLinkView(context))
                 llInput.visibility = View.VISIBLE
             }
             1 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_text, llInput, false)
                 llInput.addView(GenerateTextView(context))
                 llInput.visibility = View.VISIBLE
             }
             2 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_contact, llInput, false)
                 llInput.addView(GenerateWebLinkView(context))
                 llInput.visibility = View.VISIBLE
             }
             3 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_email, llInput, false)
                 llInput.addView(GenerateEmailView(context))
                 llInput.visibility = View.VISIBLE
             }
             4 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_sms, llInput, false)
                 llInput.addView(GenerateSmsView(context))
                 llInput.visibility = View.VISIBLE
             }
             5 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_location, llInput, false)
                 llInput.addView(GenerateLocationView(context))
                 llInput.visibility = View.VISIBLE
             }
             6 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_phone, llInput, false)
                 llInput.addView(GeneratePhoneView(context))
                 llInput.visibility = View.VISIBLE
             }
             7 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_event, llInput, false)
                 llInput.addView(GeneratsEventView(context))
                 llInput.visibility = View.VISIBLE
             }
             8 -> {
-//                val view: View = LayoutInflater.from(activity).inflate(R.layout.generate_wifi, llInput, false)
                 llInput.addView(GeneratsWifiView(context))
                 llInput.visibility = View.VISIBLE
             }

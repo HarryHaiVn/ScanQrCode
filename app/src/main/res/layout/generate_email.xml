@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/required"
+            android:id="@+id/name_error"
             android:textColor="@color/errorColor"
             android:textSize="@dimen/_12sdp"
             android:visibility="gone" />
