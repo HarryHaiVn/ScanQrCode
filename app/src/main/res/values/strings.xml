@@ -77,15 +77,11 @@
     <string name="title_org">Organization</string>
     <string name="title_result_email_address">Email</string>
     <string name="title_result_tel">Phone</string>
-    <string name="favorite">Favorite</string>
     <string name="scan">Scan</string>
     <string name="scan_image">Scan Image</string>
     <string name="favorite">Favorite</string>
-    <string name="history">History</string>
     <string name="create_my_qr">Create My Qr</string>
     <string name="create_qr">Create QR</string>
-    <string name="setting">Setting</string>
-    <string name="share">Share</string>
     <string name="my_app">My App</string>
     <string name="remove_qc">Remove Ads</string>
     <string name="web">Website</string>
