@@ -1,16 +1,13 @@
 package harry.vn.qrcode.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import net.glxn.qrgen.android.QRCode;
-import net.glxn.qrgen.core.scheme.EMail;
 import net.glxn.qrgen.core.scheme.IEvent;
-import net.glxn.qrgen.core.scheme.SMS;
 
 import harry.vn.qrcode.R;
 

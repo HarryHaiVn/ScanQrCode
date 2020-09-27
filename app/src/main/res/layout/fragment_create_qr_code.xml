@@ -38,7 +38,7 @@
             android:layout_below="@+id/txtHistory"
             android:background="@color/colorGray79" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTypeQr"
             android:background="@drawable/inputb_bg"
             android:layout_margin="@dimen/_10sdp"

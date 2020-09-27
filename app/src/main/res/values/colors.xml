@@ -76,4 +76,12 @@
     <color name="tooltip_background_light">#e6ffffff</color>
     <color name="viewfinder_laser">#fff44336</color>
     <color name="viewfinder_mask">#60000000</color>
+    <color name="colorRed">#f74243</color>
+    <color name="colorYellow">#ffbb34</color>
+    <color name="color">#437aa1</color>
+    <color name="color1">#01ddff</color>
+    <color name="color2">#fe9591</color>
+    <color name="color3">#aa65cf</color>
+    <color name="color4">#f3c6b3</color>
+    <color name="colorToolbar">#ffaf04</color>
 </resources>

@@ -1,13 +1,12 @@
 package harry.vn.qrcode.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import net.glxn.qrgen.android.QRCode;
 import net.glxn.qrgen.core.scheme.GeoInfo;

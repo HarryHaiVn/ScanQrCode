@@ -29,6 +29,6 @@ task clean(type: Delete) {
 
 // Define versions in a single place
 ext {
-    butterKnifeVersion = '8.7.0'
+    butterKnifeVersion = '10.0.0'
     glideVersion = '3.7.0'
 }
