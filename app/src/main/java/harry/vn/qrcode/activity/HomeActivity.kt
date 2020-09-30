@@ -1,6 +1,7 @@
 package harry.vn.qrcode.activity
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -11,15 +12,56 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import harry.vn.qrcode.R
+import harry.vn.qrcode.activity.MainActivity.SELECT_SCREEN
+import kotlinx.android.synthetic.main.activity_home.*
 
 
-class MainActivity2 : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
+class HomeActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private val TAG = this::class.java.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main2)
+        setContentView(R.layout.activity_home)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        initView()
+    }
+
+    private fun initView() {
+        fab.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 0)
+            startActivity(intent)
+        }
+        fab1.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 1)
+            startActivity(intent)
+        }
+        fab2.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 2)
+            startActivity(intent)
+        }
+        fab3.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 3)
+            startActivity(intent)
+        }
+        fab4.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 4)
+            startActivity(intent)
+        }
+        fab5.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 5)
+            startActivity(intent)
+        }
+        fab6.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(SELECT_SCREEN, 6)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

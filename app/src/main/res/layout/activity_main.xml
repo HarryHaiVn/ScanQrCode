@@ -2,13 +2,9 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
     <FrameLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_navigation" />
-
-    <include layout="@layout/main_drawer" />
-
 </androidx.drawerlayout.widget.DrawerLayout>
