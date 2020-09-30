@@ -44,18 +44,18 @@ public class MainActivity extends AppCompatActivity {
         int idScreen = getIntent().getIntExtra(SELECT_SCREEN, 0);
         switch (idScreen) {
             case 0:
-                FragmentUtil.showFragment(getSupportFragmentManager(), QRScanFragment.newInstance(), true, null, QRScanFragment.class.getName(), false);
-                break;
-            case 1:
                 Intent photoPic = new Intent(Intent.ACTION_PICK);
                 photoPic.setType("image/*");
                 startActivityForResult(photoPic, SELECT_PHOTO);
                 break;
+            case 1:
+                FragmentUtil.showFragment(getSupportFragmentManager(), QRScanFragment.newInstance(), true, null, QRScanFragment.class.getName(), false);
+                break;
             case 2:
-                FragmentUtil.showFragment(getSupportFragmentManager(), FavoriteFragment.newInstance(), true, null, FavoriteFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
                 break;
             case 3:
-                FragmentUtil.showFragment(getSupportFragmentManager(), HistoryFragment.newInstance(), true, null, HistoryFragment.class.getName(), false);
+                FragmentUtil.showFragment(getSupportFragmentManager(), FavoriteFragment.newInstance(), true, null, FavoriteFragment.class.getName(), false);
                 break;
             case 4:
                 FragmentUtil.showFragment(getSupportFragmentManager(), MyQrCodeFragment.newInstance(), true, null, MyQrCodeFragment.class.getName(), false);
