@@ -61,8 +61,8 @@ import static harry.vn.qrcode.utils.PreferencesUtils.KEY_VIBRATE;
 
 public class QRScanFragment extends BaseFragment implements ZXingScannerView.ResultHandler {
 
-    private static final String HTTPS = "https://";
-    private static final String HTTP = "http://";
+    public static final String HTTPS = "https://";
+    public static final String HTTP = "http://";
     public static final String TAG = "QRScanFragment";
 
     private ZXingScannerView mScannerView;
@@ -158,7 +158,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
         }
     }
 
-    public static String readQRImage(Bitmap bMapOld) {
+    private static String readQRImage(Bitmap bMapOld) {
         String contents = null;
         Bitmap bMap = getResizedBitmap(bMapOld, 320, 480);
         int[] intArray = new int[bMap.getWidth() * bMap.getHeight()];
@@ -300,7 +300,7 @@ public class QRScanFragment extends BaseFragment implements ZXingScannerView.Res
         dialog.show();
     }
 
-    public boolean isValidateURl(String msg) {
+    public static boolean isValidateURl(String msg) {
         return !msg.startsWith(HTTP) && !msg.startsWith(HTTPS);
     }
 

@@ -102,10 +102,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
-        if (getTagActiveFragment().equals(CreateQrCodeFragment.class.getName())) {
-            ((CreateQrCodeFragment) fm.findFragmentByTag(getTagActiveFragment())).onBackPress();
-            return;
-        }
         if (fm.getBackStackEntryCount() > 1) {
             fm.popBackStack();
         } else {
