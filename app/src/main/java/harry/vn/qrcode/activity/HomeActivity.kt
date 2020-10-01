@@ -163,7 +163,7 @@ class HomeActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
                 val bMap = BitmapFactory.decodeStream(imageStream)
 //                rlProgressBar.setVisibility(View.VISIBLE)
                 Toast.makeText(this, R.string.scan_qr, Toast.LENGTH_SHORT).show()
-                MyAsyncTask(bMap).execute()
+                MyAsyncTask(applicationContext, bMap).execute()
                 //                    qrCode = readQRImage(bMap);
 //                    if (qrCode != null) {
 //                        showDialog(qrCode + "", getString(R.string.ok));
@@ -175,67 +175,8 @@ class HomeActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
-    fun showDialog(msg: String, status: String) {
-        val dialog = Dialog(applicationContext)
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setCancelable(false)
-        dialog.setContentView(R.layout.dialog)
-        if (dialog.window != null) {
-            dialog.window.setLayout(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT)
-        }
-        val txtContent = dialog.findViewById<TextView>(R.id.txtContent)
-        txtContent.text = msg
-        if (status == getString(R.string.ok)) {
-            val content = SpannableString(msg)
-            content.setSpan(UnderlineSpan(), 0, content.length, 0)
-            txtContent.text = content
-        }
-        txtContent.setOnClickListener {
-            dialog.dismiss()
-            if (isValidateURl(msg)) {
-                val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse("https://www.google.com.vn/search?q=$msg")
-                startActivity(i)
-            } else {
-                if (status == getString(R.string.ok)) {
-                    openBrowser(msg)
-                }
-            }
-        }
-        val cancel = dialog.findViewById<TextView>(R.id.txtCancel)
-        cancel.setOnClickListener {
-            dialog.dismiss()
-        }
-        val txtSearch = dialog.findViewById<TextView>(R.id.txtSearch)
-        if (!isValidateURl(msg)) {
-            txtSearch.setText(R.string.open_url)
-        }
-        txtSearch.setOnClickListener {
-            dialog.dismiss()
-            if (isValidateURl(msg)) {
-                val i = Intent(Intent.ACTION_VIEW)
-                i.data = Uri.parse("https://www.google.com.vn/search?q=$msg")
-                startActivity(i)
-            } else {
-                if (status == getString(R.string.ok)) {
-                    openBrowser(msg)
-                }
-            }
-        }
-        dialog.show()
-    }
 
-    private fun openBrowser(msg: String) {
-        val intent: Intent = if (!msg.startsWith(QRScanFragment.HTTP) && !msg.startsWith(QRScanFragment.HTTPS)) {
-            Intent(Intent.ACTION_VIEW, Uri.parse(QRScanFragment.HTTP + msg))
-        } else
-            Intent(Intent.ACTION_VIEW, Uri.parse(msg))
-        startActivity(Intent.createChooser(intent, getString(R.string.choose_brower))) // Choose browser is arbitrary :)
-    }
-
-    class MyAsyncTask(bitmap: Bitmap) : AsyncTask<Void, Void, String>() {
+    class MyAsyncTask(private var context: Context, bitmap: Bitmap) : AsyncTask<Void, Void, String>() {
         private var bMap: Bitmap? = bitmap
 
         override fun doInBackground(vararg p0: Void?): String? {
@@ -245,9 +186,9 @@ class HomeActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
             if (result != null) {
-                HomeActivity().showDialog(result + "", "OK")
+                showDialog(result + "", "OK")
             } else {
-                HomeActivity().showDialog("Nothing found try a different image or try again", "Error")
+                showDialog("Nothing found try a different image or try again", "Error")
             }
         }
 
@@ -284,6 +225,66 @@ class HomeActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             matrix.postScale(scaleWidth, scaleHeight)
             // recreate the new Bitmap
             return Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false)
+        }
+
+        private fun showDialog(msg: String, status: String) {
+            val dialog = Dialog(context)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(false)
+            dialog.setContentView(R.layout.dialog)
+            if (dialog.window != null) {
+                dialog.window.setLayout(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT)
+            }
+            val txtContent = dialog.findViewById<TextView>(R.id.txtContent)
+            txtContent.text = msg
+            if (status == context.getString(R.string.ok)) {
+                val content = SpannableString(msg)
+                content.setSpan(UnderlineSpan(), 0, content.length, 0)
+                txtContent.text = content
+            }
+            txtContent.setOnClickListener {
+                dialog.dismiss()
+                if (isValidateURl(msg)) {
+                    val i = Intent(Intent.ACTION_VIEW)
+                    i.data = Uri.parse("https://www.google.com.vn/search?q=$msg")
+                    context.startActivity(i)
+                } else {
+                    if (status == context.getString(R.string.ok)) {
+                        openBrowser(msg)
+                    }
+                }
+            }
+            val cancel = dialog.findViewById<TextView>(R.id.txtCancel)
+            cancel.setOnClickListener {
+                dialog.dismiss()
+            }
+            val txtSearch = dialog.findViewById<TextView>(R.id.txtSearch)
+            if (!isValidateURl(msg)) {
+                txtSearch.setText(R.string.open_url)
+            }
+            txtSearch.setOnClickListener {
+                dialog.dismiss()
+                if (isValidateURl(msg)) {
+                    val i = Intent(Intent.ACTION_VIEW)
+                    i.data = Uri.parse("https://www.google.com.vn/search?q=$msg")
+                    context.startActivity(i)
+                } else {
+                    if (status == context.getString(R.string.ok)) {
+                        openBrowser(msg)
+                    }
+                }
+            }
+            dialog.show()
+        }
+
+        private fun openBrowser(msg: String) {
+            val intent: Intent = if (!msg.startsWith(QRScanFragment.HTTP) && !msg.startsWith(QRScanFragment.HTTPS)) {
+                Intent(Intent.ACTION_VIEW, Uri.parse(QRScanFragment.HTTP + msg))
+            } else
+                Intent(Intent.ACTION_VIEW, Uri.parse(msg))
+            context.startActivity(Intent.createChooser(intent, context.getString(R.string.choose_brower))) // Choose browser is arbitrary :)
         }
     }
 }
